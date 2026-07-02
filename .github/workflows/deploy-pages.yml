@@ -38,7 +38,7 @@ jobs:
       - name: Build
         # base path must match the repository name for a project Pages site.
         env:
-          DPANC_BASE: /dp-anc-demo/
+          DPANC_BASE: /DP-ANC-Demo/
         run: npm run build
 
       - name: Validate that built audio assets exist

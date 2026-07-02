@@ -13,8 +13,8 @@ against Conventional ANC and Analytical SSANC.
 
 ## Live demo
 
-`https://<your-user>.github.io/dp-anc-demo/` (after you push to a repo named `dp-anc-demo`
-and enable Pages → "GitHub Actions"). Update this link and the base path if you rename the repo.
+**https://yzyzieee.github.io/DP-ANC-Demo/** — deployed from the `gh-pages` branch (built site).
+The Vite `base` path is `/DP-ANC-Demo/` to match the repository name.
 
 ## What you can do
 

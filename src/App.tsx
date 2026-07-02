@@ -139,7 +139,7 @@ function Demo({ manifest }: { manifest: SceneManifest }) {
         <p className="subtitle">Interactive listening demo for DP-ANC</p>
         <nav className="links">
           <a href="#" aria-disabled="true">Paper</a>
-          <a href="https://github.com/" target="_blank" rel="noreferrer">Code</a>
+          <a href="https://github.com/yzyzieee/DP-ANC-Demo" target="_blank" rel="noreferrer">Code</a>
           <a href="#" aria-disabled="true">Audio data</a>
           <a href="#citation">Citation</a>
         </nav>
