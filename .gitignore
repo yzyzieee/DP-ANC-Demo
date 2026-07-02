@@ -1,0 +1,23 @@
+# dependencies / build
+node_modules/
+dist/
+*.local
+*.tsbuildinfo
+.claude/settings.local.json
+.DS_Store
+
+# logs
+npm-debug.log*
+*.log
+
+# editor
+.vscode/
+.idea/
+
+# Python generator working files
+scripts/__pycache__/
+*.pyc
+
+# Large raw WAV masters (web-ready WAVs under public/audio ARE committed for GitHub Pages).
+# Full-resolution masters, if produced, go to GitHub Releases instead:
+scripts/_master_wav/

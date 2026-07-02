@@ -1,0 +1,862 @@
+{
+  "version": 1,
+  "generated_at": "generated-offline",
+  "sample_rate": 8000,
+  "contents": [
+    {
+      "id": "bandlimited_gaussian",
+      "label": "Band-limited Gaussian",
+      "role": "desired",
+      "source": "Synthetic band-limited Gaussian"
+    },
+    {
+      "id": "train_door_alarm",
+      "label": "Train-door alarm",
+      "role": "desired",
+      "source": "FSD50K alarm subset (CC-BY)"
+    },
+    {
+      "id": "vehicle_alarm",
+      "label": "Vehicle alarm",
+      "role": "desired",
+      "source": "FSD50K alarm subset (CC-BY)"
+    },
+    {
+      "id": "jackhammer",
+      "label": "Jackhammer",
+      "role": "both",
+      "source": "UrbanSound8K (CC-BY-NC)"
+    },
+    {
+      "id": "engine_idling",
+      "label": "Engine",
+      "role": "noise",
+      "source": "UrbanSound8K (CC-BY-NC)"
+    },
+    {
+      "id": "street_music",
+      "label": "Street noise",
+      "role": "noise",
+      "source": "UrbanSound8K (CC-BY-NC)"
+    },
+    {
+      "id": "drilling",
+      "label": "Machinery",
+      "role": "both",
+      "source": "UrbanSound8K (CC-BY-NC)"
+    }
+  ],
+  "experiments": [
+    {
+      "id": "sim",
+      "label": "Simulated array",
+      "description": "Six-microphone circular reference array (radius 0.20 m) with a center error microphone.",
+      "angle_grid_deg": [
+        0,
+        45,
+        90,
+        135,
+        180,
+        225,
+        270,
+        315
+      ],
+      "geometry": {
+        "n_ref_mics": 6,
+        "circular": true
+      },
+      "scenes": [
+        {
+          "id": "sim__train_door_alarm_0__jackhammer_90",
+          "desired": {
+            "content_id": "train_door_alarm",
+            "label": "Train-door alarm",
+            "direction_deg": 0
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 90
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -28.55,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "Original mixture",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__train_door_alarm_0__jackhammer_90/mixture_output.wav",
+                "desired": "audio/sim/sim__train_door_alarm_0__jackhammer_90/mixture_desired.wav",
+                "noise": "audio/sim/sim__train_door_alarm_0__jackhammer_90/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -9.98,
+                "stoi": null
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__train_door_alarm_0__jackhammer_90/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__train_door_alarm_0__jackhammer_90/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__train_door_alarm_0__jackhammer_90/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 22.75,
+                "desired_distortion_db": -0.16,
+                "output_snr_db": -6.8,
+                "stoi": null
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__train_door_alarm_0__jackhammer_90/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__train_door_alarm_0__jackhammer_90/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__train_door_alarm_0__jackhammer_90/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 20.67,
+                "desired_distortion_db": -3.44,
+                "output_snr_db": 4.13,
+                "stoi": null
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__train_door_alarm_0__jackhammer_90/dp_anc_output.wav",
+                "desired": "audio/sim/sim__train_door_alarm_0__jackhammer_90/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__train_door_alarm_0__jackhammer_90/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 22.07,
+                "desired_distortion_db": -9.41,
+                "output_snr_db": 14.15,
+                "stoi": null
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__train_door_alarm_0__jackhammer_135",
+          "desired": {
+            "content_id": "train_door_alarm",
+            "label": "Train-door alarm",
+            "direction_deg": 0
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 135
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -27.5,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "Original mixture",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__train_door_alarm_0__jackhammer_135/mixture_output.wav",
+                "desired": "audio/sim/sim__train_door_alarm_0__jackhammer_135/mixture_desired.wav",
+                "noise": "audio/sim/sim__train_door_alarm_0__jackhammer_135/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.01,
+                "stoi": null
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__train_door_alarm_0__jackhammer_135/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__train_door_alarm_0__jackhammer_135/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__train_door_alarm_0__jackhammer_135/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 24.14,
+                "desired_distortion_db": -0.18,
+                "output_snr_db": -7.37,
+                "stoi": null
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__train_door_alarm_0__jackhammer_135/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__train_door_alarm_0__jackhammer_135/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__train_door_alarm_0__jackhammer_135/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 21.63,
+                "desired_distortion_db": -3.49,
+                "output_snr_db": 5.27,
+                "stoi": null
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__train_door_alarm_0__jackhammer_135/dp_anc_output.wav",
+                "desired": "audio/sim/sim__train_door_alarm_0__jackhammer_135/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__train_door_alarm_0__jackhammer_135/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 20.37,
+                "desired_distortion_db": -16.81,
+                "output_snr_db": 11.06,
+                "stoi": null
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__train_door_alarm_0__engine_idling_90",
+          "desired": {
+            "content_id": "train_door_alarm",
+            "label": "Train-door alarm",
+            "direction_deg": 0
+          },
+          "noise": {
+            "content_id": "engine_idling",
+            "label": "Engine",
+            "direction_deg": 90
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -19.99,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "Original mixture",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__train_door_alarm_0__engine_idling_90/mixture_output.wav",
+                "desired": "audio/sim/sim__train_door_alarm_0__engine_idling_90/mixture_desired.wav",
+                "noise": "audio/sim/sim__train_door_alarm_0__engine_idling_90/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -8.09,
+                "stoi": null
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__train_door_alarm_0__engine_idling_90/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__train_door_alarm_0__engine_idling_90/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__train_door_alarm_0__engine_idling_90/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 24.58,
+                "desired_distortion_db": -0.15,
+                "output_snr_db": -3.42,
+                "stoi": null
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__train_door_alarm_0__engine_idling_90/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__train_door_alarm_0__engine_idling_90/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__train_door_alarm_0__engine_idling_90/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 23.92,
+                "desired_distortion_db": -3.29,
+                "output_snr_db": 9.15,
+                "stoi": null
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__train_door_alarm_0__engine_idling_90/dp_anc_output.wav",
+                "desired": "audio/sim/sim__train_door_alarm_0__engine_idling_90/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__train_door_alarm_0__engine_idling_90/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 23.45,
+                "desired_distortion_db": -9.64,
+                "output_snr_db": 17.47,
+                "stoi": null
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__jackhammer_90__train_door_alarm_0",
+          "desired": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 90
+          },
+          "noise": {
+            "content_id": "train_door_alarm",
+            "label": "Train-door alarm",
+            "direction_deg": 0
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -26.23,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "Original mixture",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__jackhammer_90__train_door_alarm_0/mixture_output.wav",
+                "desired": "audio/sim/sim__jackhammer_90__train_door_alarm_0/mixture_desired.wav",
+                "noise": "audio/sim/sim__jackhammer_90__train_door_alarm_0/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.06,
+                "stoi": null
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__jackhammer_90__train_door_alarm_0/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__jackhammer_90__train_door_alarm_0/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__jackhammer_90__train_door_alarm_0/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 26.11,
+                "desired_distortion_db": -0.38,
+                "output_snr_db": 3.75,
+                "stoi": null
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__jackhammer_90__train_door_alarm_0/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__jackhammer_90__train_door_alarm_0/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__jackhammer_90__train_door_alarm_0/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 24.11,
+                "desired_distortion_db": -5.24,
+                "output_snr_db": 9.82,
+                "stoi": null
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__jackhammer_90__train_door_alarm_0/dp_anc_output.wav",
+                "desired": "audio/sim/sim__jackhammer_90__train_door_alarm_0/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__jackhammer_90__train_door_alarm_0/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 26.32,
+                "desired_distortion_db": -13.35,
+                "output_snr_db": 17.14,
+                "stoi": null
+              }
+            }
+          },
+          "swap_of": "sim__train_door_alarm_0__jackhammer_90"
+        },
+        {
+          "id": "sim__vehicle_alarm_45__street_music_135",
+          "desired": {
+            "content_id": "vehicle_alarm",
+            "label": "Vehicle alarm",
+            "direction_deg": 45
+          },
+          "noise": {
+            "content_id": "street_music",
+            "label": "Street noise",
+            "direction_deg": 135
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -25.67,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "Original mixture",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__vehicle_alarm_45__street_music_135/mixture_output.wav",
+                "desired": "audio/sim/sim__vehicle_alarm_45__street_music_135/mixture_desired.wav",
+                "noise": "audio/sim/sim__vehicle_alarm_45__street_music_135/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -9.99,
+                "stoi": null
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__vehicle_alarm_45__street_music_135/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__vehicle_alarm_45__street_music_135/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__vehicle_alarm_45__street_music_135/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 17.47,
+                "desired_distortion_db": -0.22,
+                "output_snr_db": -15.19,
+                "stoi": null
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__vehicle_alarm_45__street_music_135/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__vehicle_alarm_45__street_music_135/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__vehicle_alarm_45__street_music_135/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 12.09,
+                "desired_distortion_db": -3.11,
+                "output_snr_db": -5.63,
+                "stoi": null
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__vehicle_alarm_45__street_music_135/dp_anc_output.wav",
+                "desired": "audio/sim/sim__vehicle_alarm_45__street_music_135/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__vehicle_alarm_45__street_music_135/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 19.05,
+                "desired_distortion_db": -4.96,
+                "output_snr_db": 12.28,
+                "stoi": null
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__bandlimited_gaussian_0__drilling_90",
+          "desired": {
+            "content_id": "bandlimited_gaussian",
+            "label": "Band-limited Gaussian",
+            "direction_deg": 0
+          },
+          "noise": {
+            "content_id": "drilling",
+            "label": "Machinery",
+            "direction_deg": 90
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -26.95,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "Original mixture",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__bandlimited_gaussian_0__drilling_90/mixture_output.wav",
+                "desired": "audio/sim/sim__bandlimited_gaussian_0__drilling_90/mixture_desired.wav",
+                "noise": "audio/sim/sim__bandlimited_gaussian_0__drilling_90/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.01,
+                "stoi": null
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__bandlimited_gaussian_0__drilling_90/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__bandlimited_gaussian_0__drilling_90/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__bandlimited_gaussian_0__drilling_90/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 24.69,
+                "desired_distortion_db": -0.28,
+                "output_snr_db": -8.78,
+                "stoi": null
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__bandlimited_gaussian_0__drilling_90/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__bandlimited_gaussian_0__drilling_90/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__bandlimited_gaussian_0__drilling_90/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 19.44,
+                "desired_distortion_db": -9.5,
+                "output_snr_db": 6.18,
+                "stoi": null
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__bandlimited_gaussian_0__drilling_90/dp_anc_output.wav",
+                "desired": "audio/sim/sim__bandlimited_gaussian_0__drilling_90/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__bandlimited_gaussian_0__drilling_90/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 23.24,
+                "desired_distortion_db": -11.83,
+                "output_snr_db": 13.79,
+                "stoi": null
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "hp",
+      "label": "Hearpiece (measured paths)",
+      "description": "Four external reference microphones (concha and entrance, left/right) with the error microphone at the right eardrum; measured KEMAR acoustic paths, ideal minimum-phase secondary path.",
+      "angle_grid_deg": [
+        0.0,
+        7.5,
+        15.0,
+        22.5,
+        30.0,
+        37.5,
+        45.0,
+        52.5,
+        60.0,
+        67.5,
+        75.0,
+        82.5,
+        90.0,
+        97.5,
+        105.0,
+        112.5,
+        120.0,
+        127.5,
+        135.0,
+        142.5,
+        150.0,
+        157.5,
+        165.0,
+        172.5,
+        180.0,
+        187.5,
+        195.0,
+        202.5,
+        210.0,
+        217.5,
+        225.0,
+        232.5,
+        240.0,
+        247.5,
+        255.0,
+        262.5,
+        270.0,
+        277.5,
+        285.0,
+        292.5,
+        300.0,
+        307.5,
+        315.0,
+        322.5,
+        330.0,
+        337.5,
+        345.0,
+        352.5
+      ],
+      "geometry": {
+        "n_ref_mics": 4,
+        "circular": false,
+        "ref_mic_deg": [
+          60,
+          120,
+          240,
+          300
+        ]
+      },
+      "scenes": [
+        {
+          "id": "hp__train_door_alarm_45__street_music_210",
+          "desired": {
+            "content_id": "train_door_alarm",
+            "label": "Train-door alarm",
+            "direction_deg": 45
+          },
+          "noise": {
+            "content_id": "street_music",
+            "label": "Street noise",
+            "direction_deg": 210
+          },
+          "input_snr_db": -5.0,
+          "lambda": 1.0,
+          "duration_s": 4.0,
+          "shared_gain_db": -6.85,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "Original mixture",
+              "available": true,
+              "audio": {
+                "output": "audio/hp/hp__train_door_alarm_45__street_music_210/mixture_output.wav",
+                "desired": "audio/hp/hp__train_door_alarm_45__street_music_210/mixture_desired.wav",
+                "noise": "audio/hp/hp__train_door_alarm_45__street_music_210/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": -0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -5.0,
+                "stoi": null
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/hp/hp__train_door_alarm_45__street_music_210/conventional_anc_output.wav",
+                "desired": "audio/hp/hp__train_door_alarm_45__street_music_210/conventional_anc_desired.wav",
+                "noise": "audio/hp/hp__train_door_alarm_45__street_music_210/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 21.92,
+                "desired_distortion_db": -0.02,
+                "output_snr_db": -14.62,
+                "stoi": null
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/hp/hp__train_door_alarm_45__street_music_210/analytical_ssanc_output.wav",
+                "desired": "audio/hp/hp__train_door_alarm_45__street_music_210/analytical_ssanc_desired.wav",
+                "noise": "audio/hp/hp__train_door_alarm_45__street_music_210/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 8.0,
+                "desired_distortion_db": -43.84,
+                "output_snr_db": 2.98,
+                "stoi": null
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/hp/hp__train_door_alarm_45__street_music_210/dp_anc_output.wav",
+                "desired": "audio/hp/hp__train_door_alarm_45__street_music_210/dp_anc_desired.wav",
+                "noise": "audio/hp/hp__train_door_alarm_45__street_music_210/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 14.81,
+                "desired_distortion_db": -21.17,
+                "output_snr_db": 9.35,
+                "stoi": null
+              }
+            }
+          }
+        },
+        {
+          "id": "hp__train_door_alarm_45__drilling_135",
+          "desired": {
+            "content_id": "train_door_alarm",
+            "label": "Train-door alarm",
+            "direction_deg": 45
+          },
+          "noise": {
+            "content_id": "drilling",
+            "label": "Machinery",
+            "direction_deg": 135
+          },
+          "input_snr_db": -5.0,
+          "lambda": 1.0,
+          "duration_s": 4.0,
+          "shared_gain_db": -15.88,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "Original mixture",
+              "available": true,
+              "audio": {
+                "output": "audio/hp/hp__train_door_alarm_45__drilling_135/mixture_output.wav",
+                "desired": "audio/hp/hp__train_door_alarm_45__drilling_135/mixture_desired.wav",
+                "noise": "audio/hp/hp__train_door_alarm_45__drilling_135/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": -0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -5.01,
+                "stoi": null
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/hp/hp__train_door_alarm_45__drilling_135/conventional_anc_output.wav",
+                "desired": "audio/hp/hp__train_door_alarm_45__drilling_135/conventional_anc_desired.wav",
+                "noise": "audio/hp/hp__train_door_alarm_45__drilling_135/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 20.52,
+                "desired_distortion_db": -0.02,
+                "output_snr_db": -19.55,
+                "stoi": null
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/hp/hp__train_door_alarm_45__drilling_135/analytical_ssanc_output.wav",
+                "desired": "audio/hp/hp__train_door_alarm_45__drilling_135/analytical_ssanc_desired.wav",
+                "noise": "audio/hp/hp__train_door_alarm_45__drilling_135/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": -3.29,
+                "desired_distortion_db": -55.92,
+                "output_snr_db": -8.3,
+                "stoi": null
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/hp/hp__train_door_alarm_45__drilling_135/dp_anc_output.wav",
+                "desired": "audio/hp/hp__train_door_alarm_45__drilling_135/dp_anc_desired.wav",
+                "noise": "audio/hp/hp__train_door_alarm_45__drilling_135/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 13.7,
+                "desired_distortion_db": -16.2,
+                "output_snr_db": 8.91,
+                "stoi": null
+              }
+            }
+          }
+        },
+        {
+          "id": "hp__drilling_135__train_door_alarm_45",
+          "desired": {
+            "content_id": "drilling",
+            "label": "Machinery",
+            "direction_deg": 135
+          },
+          "noise": {
+            "content_id": "train_door_alarm",
+            "label": "Train-door alarm",
+            "direction_deg": 45
+          },
+          "input_snr_db": -5.0,
+          "lambda": 1.0,
+          "duration_s": 4.0,
+          "shared_gain_db": -2.93,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "Original mixture",
+              "available": true,
+              "audio": {
+                "output": "audio/hp/hp__drilling_135__train_door_alarm_45/mixture_output.wav",
+                "desired": "audio/hp/hp__drilling_135__train_door_alarm_45/mixture_desired.wav",
+                "noise": "audio/hp/hp__drilling_135__train_door_alarm_45/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": -0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -5.01,
+                "stoi": null
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/hp/hp__drilling_135__train_door_alarm_45/conventional_anc_output.wav",
+                "desired": "audio/hp/hp__drilling_135__train_door_alarm_45/conventional_anc_desired.wav",
+                "noise": "audio/hp/hp__drilling_135__train_door_alarm_45/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 27.68,
+                "desired_distortion_db": -0.02,
+                "output_snr_db": -10.18,
+                "stoi": null
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/hp/hp__drilling_135__train_door_alarm_45/analytical_ssanc_output.wav",
+                "desired": "audio/hp/hp__drilling_135__train_door_alarm_45/analytical_ssanc_desired.wav",
+                "noise": "audio/hp/hp__drilling_135__train_door_alarm_45/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 16.13,
+                "desired_distortion_db": -68.93,
+                "output_snr_db": 11.12,
+                "stoi": null
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/hp/hp__drilling_135__train_door_alarm_45/dp_anc_output.wav",
+                "desired": "audio/hp/hp__drilling_135__train_door_alarm_45/dp_anc_desired.wav",
+                "noise": "audio/hp/hp__drilling_135__train_door_alarm_45/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 12.44,
+                "desired_distortion_db": -8.58,
+                "output_snr_db": 3.61,
+                "stoi": null
+              }
+            }
+          },
+          "swap_of": "hp__train_door_alarm_45__drilling_135"
+        }
+      ]
+    }
+  ],
+  "disclaimer": "This page presents precomputed error-microphone signals generated using the simulated and measured acoustic configurations described in the paper. It does not run physical ANC in the browser. The demo uses a finite set of source directions and audio scenes. Results show preservation behavior that generalizes beyond the desired-signal class used during training and is consistent with direction-conditioned control."
+}
