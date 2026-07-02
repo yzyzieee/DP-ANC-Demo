@@ -13,8 +13,9 @@ against Conventional ANC and Analytical SSANC.
 
 ## Live demo
 
-**https://yzyzieee.github.io/DP-ANC-Demo/** — deployed from the `gh-pages` branch (built site).
-The Vite `base` path is `/DP-ANC-Demo/` to match the repository name.
+**https://yzyzieee.github.io/DP-ANC-Demo/** — deployed automatically by GitHub Actions on every
+push to `main` (Pages source = "GitHub Actions"). The Vite `base` path is `/DP-ANC-Demo/` to
+match the repository name.
 
 ## What you can do
 
