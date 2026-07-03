@@ -2,11 +2,12 @@ import { useCallback, useRef } from "react";
 import type { ArrayGeometry } from "../types/scene";
 import { polarToSvg, snapToGrid, svgToPolarDeg, normalizeDeg } from "../lib/angleUtils";
 
-const VB = 360;
-const C = VB / 2;
-const R_RING = 118;
-const R_SRC = 150;
-const R_LABEL = 150;
+const VB_W = 360;
+const VB_H = 400;
+const CX = VB_W / 2;
+const CY = 232; // shifted down to leave room for the in-figure key at the top
+const R_RING = 108;
+const R_SRC = 138;
 const PROTECT_HALF_DEG = 15; // angular-resolution limit (empirical), not a trained sector
 
 interface Props {
@@ -22,12 +23,9 @@ interface Props {
 
 /** SVG pie-wedge for the desired protection sector. */
 function wedgePath(centerDeg: number, halfDeg: number, r: number): string {
-  const a0 = centerDeg - halfDeg;
-  const a1 = centerDeg + halfDeg;
-  const p0 = polarToSvg(a0, r, C, C);
-  const p1 = polarToSvg(a1, r, C, C);
-  // sweep-flag 0 because SVG y is flipped relative to our CCW convention
-  return `M ${C} ${C} L ${p0.x.toFixed(2)} ${p0.y.toFixed(2)} A ${r} ${r} 0 0 0 ${p1.x.toFixed(2)} ${p1.y.toFixed(2)} Z`;
+  const p0 = polarToSvg(centerDeg - halfDeg, r, CX, CY);
+  const p1 = polarToSvg(centerDeg + halfDeg, r, CX, CY);
+  return `M ${CX} ${CY} L ${p0.x.toFixed(2)} ${p0.y.toFixed(2)} A ${r} ${r} 0 0 0 ${p1.x.toFixed(2)} ${p1.y.toFixed(2)} Z`;
 }
 
 export function AcousticScene({
@@ -51,9 +49,9 @@ export function AcousticScene({
     const svg = svgRef.current;
     if (!svg) return 0;
     const rect = svg.getBoundingClientRect();
-    const x = ((clientX - rect.left) / rect.width) * VB;
-    const y = ((clientY - rect.top) / rect.height) * VB;
-    return svgToPolarDeg(x, y, C, C);
+    const x = ((clientX - rect.left) / rect.width) * VB_W;
+    const y = ((clientY - rect.top) / rect.height) * VB_H;
+    return svgToPolarDeg(x, y, CX, CY);
   }, []);
 
   const handleMove = useCallback(
@@ -92,41 +90,58 @@ export function AcousticScene({
     else if (e.key === "ArrowLeft" || e.key === "ArrowDown") { e.preventDefault(); stepAngle(which, -1); }
   };
 
-  const desiredPos = polarToSvg(desiredDeg, R_SRC, C, C);
-  const noisePos = polarToSvg(noiseDeg, R_SRC, C, C);
-  const desiredLabelPos = polarToSvg(desiredDeg, R_LABEL + 22, C, C);
-  const noiseLabelPos = polarToSvg(noiseDeg, R_LABEL + 22, C, C);
+  const desiredPos = polarToSvg(desiredDeg, R_SRC, CX, CY);
+  const noisePos = polarToSvg(noiseDeg, R_SRC, CX, CY);
+  // Push each source's text label outward along its own radius, then clamp inside the viewBox.
+  const dLbl = polarToSvg(desiredDeg, R_SRC + 26, CX, CY);
+  const nLbl = polarToSvg(noiseDeg, R_SRC + 26, CX, CY);
+  const clampX = (x: number) => Math.max(52, Math.min(VB_W - 52, x));
+
+  // In-figure key entries
+  const keyRow = (x: number, y: number, swatch: React.ReactNode, text: string, color: string) => (
+    <g>
+      <g transform={`translate(${x}, ${y})`}>{swatch}</g>
+      <text x={x + 16} y={y + 4} fontSize={11} fill={color} fontWeight={600}>{text}</text>
+    </g>
+  );
 
   return (
     <svg
       ref={svgRef}
       className="scene-svg"
-      viewBox={`0 0 ${VB} ${VB}`}
+      viewBox={`0 0 ${VB_W} ${VB_H}`}
       role="group"
       aria-label="Top-view acoustic scene: microphone array with desired and non-desired sources"
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
       onPointerLeave={onPointerUp}
     >
+      {/* ---- in-figure key ---- */}
+      {keyRow(10, 12, <circle r={6} fill="var(--desired)" stroke="#fff" strokeWidth={1.5} />, "Desired — keep this direction", "var(--desired)")}
+      {keyRow(10, 30, <circle r={6} fill="var(--noise)" stroke="#fff" strokeWidth={1.5} />, "Non-desired — cancel this direction", "var(--noise)")}
+      {keyRow(10, 48, <circle r={4.5} fill="var(--neutral)" />, `Reference mic × ${geometry.n_ref_mics}`, "var(--text-dim)")}
+      {keyRow(200, 48, <rect x={-4} y={-4} width={8} height={8} rx={1.5} fill="#374151" />, "Error mic (center)", "var(--text-dim)")}
+
       {/* protection sector around the desired direction */}
-      <path d={wedgePath(desiredDeg, PROTECT_HALF_DEG, R_SRC)} fill="var(--desired-soft)" opacity={0.65} />
+      <path d={wedgePath(desiredDeg, PROTECT_HALF_DEG, R_SRC)} fill="var(--desired-soft)" opacity={0.7} />
 
-      {/* array ring */}
-      <circle cx={C} cy={C} r={R_RING} fill="none" stroke="var(--neutral-soft)" strokeWidth={2} />
-
-      {/* reference mics */}
+      {/* array ring + reference mics */}
+      <circle cx={CX} cy={CY} r={R_RING} fill="none" stroke="var(--neutral-soft)" strokeWidth={2} />
       {refMicAngles.map((a, i) => {
-        const p = polarToSvg(a, R_RING, C, C);
+        const p = polarToSvg(a, R_RING, CX, CY);
         return <circle key={i} cx={p.x} cy={p.y} r={5} fill="var(--neutral)" />;
       })}
+      <text x={CX} y={CY - R_RING - 8} textAnchor="middle" fontSize={10} fill="var(--text-dim)">
+        reference mic array
+      </text>
 
       {/* center error mic */}
-      <rect x={C - 6} y={C - 6} width={12} height={12} rx={2} fill="#374151" />
-      <text x={C} y={C + 22} textAnchor="middle" fontSize={10} fill="var(--text-dim)">error mic</text>
+      <rect x={CX - 6} y={CY - 6} width={12} height={12} rx={2} fill="#374151" />
+      <text x={CX} y={CY + 22} textAnchor="middle" fontSize={10} fill="var(--text-dim)">error mic</text>
 
       {/* radial lines to sources */}
-      <line x1={C} y1={C} x2={desiredPos.x} y2={desiredPos.y} stroke="var(--desired)" strokeWidth={2} strokeDasharray="1 0" opacity={0.5} />
-      <line x1={C} y1={C} x2={noisePos.x} y2={noisePos.y} stroke="var(--noise)" strokeWidth={2} opacity={0.5} />
+      <line x1={CX} y1={CY} x2={desiredPos.x} y2={desiredPos.y} stroke="var(--desired)" strokeWidth={2} opacity={0.45} />
+      <line x1={CX} y1={CY} x2={noisePos.x} y2={noisePos.y} stroke="var(--noise)" strokeWidth={2} opacity={0.45} />
 
       {/* desired source (draggable) */}
       <g
@@ -136,15 +151,18 @@ export function AcousticScene({
         aria-valuemin={0}
         aria-valuemax={359}
         aria-valuenow={Math.round(desiredDeg)}
-        aria-valuetext={`${Math.round(desiredDeg)} degrees, ${desiredLabel}`}
+        aria-valuetext={`${Math.round(desiredDeg)} degrees, desired: ${desiredLabel}`}
         style={{ cursor: "grab" }}
         onPointerDown={onPointerDown("desired")}
         onKeyDown={onKey("desired")}
       >
-        <circle cx={desiredPos.x} cy={desiredPos.y} r={13} fill="var(--desired)" stroke="#fff" strokeWidth={2} />
+        <circle cx={desiredPos.x} cy={desiredPos.y} r={14} fill="var(--desired)" stroke="#fff" strokeWidth={2.5} />
         <text x={desiredPos.x} y={desiredPos.y + 4} textAnchor="middle" fontSize={12} fontWeight={700} fill="#fff">D</text>
-        <text x={desiredLabelPos.x} y={desiredLabelPos.y} textAnchor="middle" fontSize={11} fontWeight={700} fill="var(--desired)">
-          {Math.round(desiredDeg)}°
+        <text
+          x={clampX(dLbl.x)} y={dLbl.y} textAnchor="middle" fontSize={11} fontWeight={700}
+          fill="var(--desired)" stroke="#fff" strokeWidth={3} paintOrder="stroke"
+        >
+          Desired · {Math.round(desiredDeg)}°
         </text>
       </g>
 
@@ -156,15 +174,18 @@ export function AcousticScene({
         aria-valuemin={0}
         aria-valuemax={359}
         aria-valuenow={Math.round(noiseDeg)}
-        aria-valuetext={`${Math.round(noiseDeg)} degrees, ${noiseLabel}`}
+        aria-valuetext={`${Math.round(noiseDeg)} degrees, non-desired: ${noiseLabel}`}
         style={{ cursor: "grab" }}
         onPointerDown={onPointerDown("noise")}
         onKeyDown={onKey("noise")}
       >
-        <circle cx={noisePos.x} cy={noisePos.y} r={13} fill="var(--noise)" stroke="#fff" strokeWidth={2} />
+        <circle cx={noisePos.x} cy={noisePos.y} r={14} fill="var(--noise)" stroke="#fff" strokeWidth={2.5} />
         <text x={noisePos.x} y={noisePos.y + 4} textAnchor="middle" fontSize={12} fontWeight={700} fill="#fff">N</text>
-        <text x={noiseLabelPos.x} y={noiseLabelPos.y} textAnchor="middle" fontSize={11} fontWeight={700} fill="var(--noise)">
-          {Math.round(noiseDeg)}°
+        <text
+          x={clampX(nLbl.x)} y={nLbl.y} textAnchor="middle" fontSize={11} fontWeight={700}
+          fill="var(--noise)" stroke="#fff" strokeWidth={3} paintOrder="stroke"
+        >
+          Noise · {Math.round(noiseDeg)}°
         </text>
       </g>
     </svg>
