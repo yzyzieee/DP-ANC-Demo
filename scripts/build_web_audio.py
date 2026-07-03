@@ -34,6 +34,11 @@ import os
 import sys
 from pathlib import Path
 
+# One BLAS thread per process: parallelism comes from the process pool over scenes, so
+# per-process single-threaded BLAS avoids oversubscription. Must be set before numpy import.
+for _v in ("OMP_NUM_THREADS", "MKL_NUM_THREADS", "OPENBLAS_NUM_THREADS", "NUMEXPR_NUM_THREADS"):
+    os.environ.setdefault(_v, "1")
+
 import numpy as np
 import soundfile as sf
 import torch
@@ -74,45 +79,52 @@ HP_CKPT = RESEARCH_ROOT / "v8_hearpiece" / "checkpoints" / "best_model_v8_dvar_l
 HP_SNR_DB = -5.0
 HP_LAMBDA = 1.0
 # angles must lie on the measured 7.5° azimuth grid
-# Hearpiece: desired fixed at 45deg, non-desired (street noise) swept around the full
-# circle on the measured grid, plus a drilling scene and its role swap.
+# Hearpiece: desired fixed at 45deg; non-desired (street noise) swept around the full
+# circle on the measured 7.5deg grid, INCLUDING small gaps (37.5/52.5 = +-7.5, 30/60 =
+# +-15) to show the resolution limit on measured paths. Plus a drilling accent.
 HP_SCENES = [
-    ("train_door_alarm", 45, "street_music", 135, None),   # default
-    ("train_door_alarm", 45, "street_music", 90, None),
-    ("train_door_alarm", 45, "street_music", 180, None),
-    ("train_door_alarm", 45, "street_music", 225, None),
-    ("train_door_alarm", 45, "street_music", 270, None),
-    ("train_door_alarm", 45, "street_music", 315, None),
-    ("train_door_alarm", 45, "drilling", 135, None),
-    ("drilling", 135, "train_door_alarm", 45, "hp__train_door_alarm_45__drilling_135"),  # role swap
+    ("siren", 45, "street_music", 135, None),   # default
+    ("siren", 45, "street_music", 37.5, None),  # +-7.5deg gap: the limit
+    ("siren", 45, "street_music", 52.5, None),
+    ("siren", 45, "street_music", 30, None),    # +-15deg gap
+    ("siren", 45, "street_music", 60, None),
+    ("siren", 45, "street_music", 90, None),
+    ("siren", 45, "street_music", 180, None),
+    ("siren", 45, "street_music", 225, None),
+    ("siren", 45, "street_music", 270, None),
+    ("siren", 45, "street_music", 315, None),
+    ("siren", 45, "drilling", 135, None),
 ]
 
 AUDIO_OUT = DEMO_ROOT / "public" / "audio"
 DATA_OUT = DEMO_ROOT / "public" / "data"
 
 # ---- content catalog ----------------------------------------------------------
-# content_id -> (label, kind, spec). kind: "gaussian" | "alarm_clip" | "urbansound".
+# content_id -> (label, kind, spec). kind: "gaussian" | "synth" | "urbansound".
+# Desired sources are CLEAN synthetic alarms (no background hiss) — they are still tonal/
+# harmonic, i.e. out-of-distribution vs the band-limited-Gaussian training desired, so they
+# still demonstrate content generalization while giving a clean A/B comparison.
 CONTENTS = {
-    "bandlimited_gaussian": ("Band-limited Gaussian", "gaussian", None),
-    "train_door_alarm": ("Train-door alarm", "alarm_clip", 31),
-    "vehicle_alarm": ("Vehicle alarm", "alarm_clip", 9),
-    "warning_signal": ("Warning signal", "alarm_clip", 17),
+    "siren": ("Two-tone siren", "synth", "siren"),
+    "beep_alarm": ("Beeping alarm", "synth", "beep"),
+    "warble": ("Warble alarm", "synth", "warble"),
+    "bandlimited_gaussian": ("Band-limited noise", "gaussian", None),
     "jackhammer": ("Jackhammer", "urbansound", "jackhammer"),
     "engine_idling": ("Engine", "urbansound", "engine_idling"),
     "street_music": ("Street noise", "urbansound", "street_music"),
     "drilling": ("Machinery", "urbansound", "drilling"),
 }
 CONTENT_ROLE = {  # for the manifest menu
-    "bandlimited_gaussian": "desired", "train_door_alarm": "desired",
-    "vehicle_alarm": "desired", "warning_signal": "desired",
+    "siren": "desired", "beep_alarm": "desired", "warble": "desired",
+    "bandlimited_gaussian": "desired",
     "jackhammer": "both", "engine_idling": "noise",
     "street_music": "noise", "drilling": "both",
 }
 CONTENT_SOURCE = {
-    "bandlimited_gaussian": "Synthetic band-limited Gaussian",
-    "train_door_alarm": "FSD50K alarm subset (CC-BY)",
-    "vehicle_alarm": "FSD50K alarm subset (CC-BY)",
-    "warning_signal": "FSD50K alarm subset (CC-BY)",
+    "siren": "Synthetic clean alarm",
+    "beep_alarm": "Synthetic clean alarm",
+    "warble": "Synthetic clean alarm",
+    "bandlimited_gaussian": "Synthetic band-limited noise",
     "jackhammer": "UrbanSound8K (CC-BY-NC)",
     "engine_idling": "UrbanSound8K (CC-BY-NC)",
     "street_music": "UrbanSound8K (CC-BY-NC)",
@@ -120,33 +132,51 @@ CONTENT_SOURCE = {
 }
 
 # ---- simulated-array scenes ----
-# Flagship duo train-door alarm <-> jackhammer: FULL 45deg cross product in BOTH role
-# assignments so both markers drag freely over 360deg and Swap is exact from any position.
-# Plus a few accent scenes to sample other contents.
-ANGLE_GRID = [0, 45, 90, 135, 180, 225, 270, 315]
+# Desired is anchored at a few directions; the non-desired source is swept DENSELY
+# around the full circle, INCLUDING small angular gaps to the desired direction so the
+# demo shows the array's angular-resolution limit (near-coincident sources cannot be
+# separated). Flagship content = two-tone siren (desired) vs jackhammer (noise).
+FLAGSHIP_DESIRED = "siren"
+DESIRED_ANCHORS = [0, 60, 120, 180, 240, 300]   # a few, evenly around the full circle
+NOISE_BASE = list(range(0, 360, 30))             # coarse full-circle -> directivity shape
+NEAR_OFF = [5, 10, 15, 22.5, 30]                 # fine points near the desired -> the dip / limit
 
 
-def _flagship_sim_scenes():
-    duo = [("train_door_alarm", "jackhammer"), ("jackhammer", "train_door_alarm")]
-    default = ("train_door_alarm", 0, "jackhammer", 90, None)
-    out = [default]                                    # keep the canonical scene first (UI default)
-    for dc, nc in duo:
-        for dd in ANGLE_GRID:
-            for nd in ANGLE_GRID:
-                if dd == nd:
-                    continue                            # keep >= 45deg desired/noise separation
-                if (dc, dd, nc, nd) == default[:4]:
-                    continue                            # already added
-                out.append((dc, dd, nc, nd, None))
+def _noise_dirs_for(dd):
+    """Non-desired directions for a given desired anchor: coarse full circle + fine near it."""
+    g = set(NOISE_BASE)
+    for o in NEAR_OFF:
+        g.add(round((dd + o) % 360, 1))
+        g.add(round((dd - o) % 360, 1))
+    g.discard(dd % 360)                            # no identical direction
+    return sorted(g)
+
+
+def _sim_scenes():
+    default = (FLAGSHIP_DESIRED, 0, "jackhammer", 90, None)
+    out = [default]
+    seen = {default[:4]}
+    for dd in DESIRED_ANCHORS:
+        for nd in _noise_dirs_for(dd):
+            key = (FLAGSHIP_DESIRED, dd, "jackhammer", nd)
+            if key in seen:
+                continue
+            seen.add(key)
+            out.append((*key, None))
     return out
 
 
+NOISE_GRID = sorted({n for a in DESIRED_ANCHORS for n in _noise_dirs_for(a)})
+ANGLE_GRID = sorted(set(DESIRED_ANCHORS) | set(NOISE_GRID))
+
+
+# A few accent scenes so other contents are still selectable (sparse, at anchor dirs).
 SIM_ACCENTS = [
-    ("train_door_alarm", 0, "engine_idling", 90, None),
+    ("siren", 0, "engine_idling", 90, None),
+    ("beep_alarm", 0, "street_music", 90, None),
     ("bandlimited_gaussian", 0, "drilling", 90, None),
-    ("vehicle_alarm", 45, "street_music", 135, None),
 ]
-SIM_SCENES = _flagship_sim_scenes() + SIM_ACCENTS
+SIM_SCENES = _sim_scenes() + SIM_ACCENTS
 
 METHODS = ["mixture", "conventional_anc", "analytical_ssanc", "dp_anc"]
 METHOD_LABELS = {
@@ -155,8 +185,12 @@ METHOD_LABELS = {
 }
 
 
+def _fmt_deg(d):
+    return str(int(d)) if float(d).is_integer() else str(d).replace(".", "p")
+
+
 def scene_id(exp, desired, dd, noise, nd):
-    return f"{exp}__{desired}_{int(dd)}__{noise}_{int(nd)}"
+    return f"{exp}__{desired}_{_fmt_deg(dd)}__{noise}_{_fmt_deg(nd)}"
 
 
 # ---- signal helpers -----------------------------------------------------------
@@ -177,17 +211,35 @@ def _pick_loudest_window(x, N):
     return x[best_i:best_i + N]
 
 
+def _synth_alarm(kind, N, dev):
+    """Clean synthetic alarm (no background noise), band-limited within [20,2500] Hz."""
+    t = torch.arange(N, device=dev, dtype=torch.float32) / FS
+    if kind == "siren":                        # two-tone siren alternating every 0.5 s
+        f1, f2, period = 700.0, 1050.0, 0.5
+        sel = ((t % period) < period / 2).float()
+        x = sel * torch.sin(2 * math.pi * f1 * t) + (1 - sel) * torch.sin(2 * math.pi * f2 * t)
+    elif kind == "beep":                       # periodic beeps, 1000 Hz, 0.18 on / 0.18 off
+        f, on, off = 1000.0, 0.18, 0.18
+        ph = (t % (on + off))
+        gate = torch.clamp(torch.minimum(ph, on - ph) / 0.01, 0.0, 1.0)  # 10 ms raised edges
+        gate = torch.where(ph < on, gate, torch.zeros_like(gate))
+        x = torch.sin(2 * math.pi * f * t) * gate
+    elif kind == "warble":                     # FM warble, 1000 +- 300 Hz at 5 Hz
+        fc, fdev, fm = 1000.0, 300.0, 5.0
+        phase = 2 * math.pi * torch.cumsum(fc + fdev * torch.sin(2 * math.pi * fm * t), dim=0) / FS
+        x = torch.sin(phase)
+    else:
+        raise ValueError(kind)
+    return x
+
+
 def load_content(content_id, N, bp, dev, gen):
     """Load one content signal, band-limited to [20,2500] Hz and unit-std, shape (N,)."""
-    global _alarm_clips
     _label, kind, spec = CONTENTS[content_id]
     if kind == "gaussian":
         x = torch.randn(N, device=dev, generator=gen)
-    elif kind == "alarm_clip":
-        if _alarm_clips is None:
-            _alarm_clips = torch.load(ALARM_CACHE, weights_only=False)["clips"]
-        clip = _alarm_clips[int(spec)].to(dev).float()
-        x = _pick_loudest_window(clip, N).clone()
+    elif kind == "synth":
+        x = _synth_alarm(spec, N, dev)
     elif kind == "urbansound":
         x = _load_urbansound_class(spec, N, dev, gen)
     else:
@@ -359,20 +411,41 @@ def _finalize(exp, desired, dd, noise, nd, swap_of, W_by_method,
     return scene
 
 
-def gen_simulated(limit=None):
-    dev = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    print(f"[simulated] device={dev}  ckpt={DP_CKPT.name}")
-    cfg = load_ckpt_to_model(DP_CKPT, dev)
-    sim = ScenarioSimulator(fs=FS, K=6, snr_db=INPUT_SNR_DB, T_sig=DUR_S, noise_src_range=(1, 1),
-                            noise_protect_deg=15.0, bp_low=BP_LOW, bp_high=BP_HIGH,
-                            bp_taps=BP_TAPS, device=str(dev))
-    from scipy.signal import firwin
-    bp = torch.tensor(firwin(BP_TAPS, [BP_LOW, BP_HIGH], fs=FS, pass_zero=False),
-                      dtype=torch.float32, device=dev)
-    scenes = []
+_SIM_CTX = None
+
+
+def _sim_ctx():
+    """Per-process simulated context (CPU): DP model + simulator + bandpass. Built once."""
+    global _SIM_CTX
+    if _SIM_CTX is None:
+        torch.set_num_threads(1)
+        dev = torch.device("cpu")
+        cfg = load_ckpt_to_model(DP_CKPT, dev)
+        sim = ScenarioSimulator(fs=FS, K=6, snr_db=INPUT_SNR_DB, T_sig=DUR_S, noise_src_range=(1, 1),
+                                noise_protect_deg=15.0, bp_low=BP_LOW, bp_high=BP_HIGH,
+                                bp_taps=BP_TAPS, device="cpu")
+        from scipy.signal import firwin
+        bp = torch.tensor(firwin(BP_TAPS, [BP_LOW, BP_HIGH], fs=FS, pass_zero=False),
+                          dtype=torch.float32, device=dev)
+        _SIM_CTX = (dev, cfg, sim, bp)
+    return _SIM_CTX
+
+
+def _sim_worker(scene_tuple):
+    dev, cfg, sim, bp = _sim_ctx()
+    desired, dd, noise, nd, swap_of = scene_tuple
+    return generate_scene(sim, cfg, bp, dev, "sim", desired, dd, noise, nd, swap_of)
+
+
+def gen_simulated(limit=None, workers=1):
     todo = SIM_SCENES[:limit] if limit else SIM_SCENES
-    for (desired, dd, noise, nd, swap_of) in todo:
-        scenes.append(generate_scene(sim, cfg, bp, dev, "sim", desired, dd, noise, nd, swap_of))
+    print(f"[simulated] {len(todo)} scenes, workers={workers} (CPU)")
+    if workers > 1:
+        from concurrent.futures import ProcessPoolExecutor
+        with ProcessPoolExecutor(max_workers=workers) as ex:
+            scenes = list(ex.map(_sim_worker, todo))
+    else:
+        scenes = [_sim_worker(s) for s in todo]
     return {
         "id": "sim", "label": "Simulated array",
         "description": "Six-microphone circular reference array (radius 0.20 m) with a center error microphone.",
@@ -505,12 +578,14 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--experiments", type=str, default="simulated,hearpiece")
+    ap.add_argument("--workers", type=int, default=max(1, (os.cpu_count() or 2) - 2),
+                    help="parallel processes for the simulated analytical solves (CPU)")
     args = ap.parse_args()
     want = set(args.experiments.split(","))
 
     experiments = []
     if "simulated" in want:
-        experiments.append(gen_simulated(limit=args.limit))
+        experiments.append(gen_simulated(limit=args.limit, workers=args.workers))
     if "hearpiece" in want:
         experiments.append(gen_hearpiece(limit=args.limit))
 

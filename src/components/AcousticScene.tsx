@@ -16,7 +16,8 @@ interface Props {
   noiseDeg: number;
   desiredLabel: string;
   noiseLabel: string;
-  grid: number[];
+  desiredGrid: number[];
+  noiseGrid: number[];
   onChangeDesired: (deg: number) => void;
   onChangeNoise: (deg: number) => void;
 }
@@ -34,7 +35,8 @@ export function AcousticScene({
   noiseDeg,
   desiredLabel,
   noiseLabel,
-  grid,
+  desiredGrid,
+  noiseGrid,
   onChangeDesired,
   onChangeNoise,
 }: Props) {
@@ -56,12 +58,14 @@ export function AcousticScene({
 
   const handleMove = useCallback(
     (clientX: number, clientY: number) => {
-      if (!dragging.current) return;
-      const snapped = snapToGrid(pointerToDeg(clientX, clientY), grid);
-      if (dragging.current === "desired") onChangeDesired(snapped);
+      const which = dragging.current;
+      if (!which) return;
+      const g = which === "desired" ? desiredGrid : noiseGrid;
+      const snapped = snapToGrid(pointerToDeg(clientX, clientY), g);
+      if (which === "desired") onChangeDesired(snapped);
       else onChangeNoise(snapped);
     },
-    [grid, onChangeDesired, onChangeNoise, pointerToDeg]
+    [desiredGrid, noiseGrid, onChangeDesired, onChangeNoise, pointerToDeg]
   );
 
   const onPointerDown = (which: "desired" | "noise") => (e: React.PointerEvent) => {
@@ -77,8 +81,9 @@ export function AcousticScene({
 
   const stepAngle = (which: "desired" | "noise", dir: 1 | -1) => {
     const cur = which === "desired" ? desiredDeg : noiseDeg;
-    if (grid.length === 0) return;
-    const sorted = [...grid].sort((a, b) => a - b);
+    const g = which === "desired" ? desiredGrid : noiseGrid;
+    if (g.length === 0) return;
+    const sorted = [...g].sort((a, b) => a - b);
     const idx = sorted.findIndex((g) => Math.abs(normalizeDeg(g) - normalizeDeg(cur)) < 1e-6);
     const next = sorted[(idx + dir + sorted.length) % sorted.length] ?? sorted[0];
     if (which === "desired") onChangeDesired(next);

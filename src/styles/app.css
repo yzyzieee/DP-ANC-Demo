@@ -109,6 +109,11 @@ a { color: var(--desired); }
 .row { display: flex; gap: 10px; }
 .row > * { flex: 1; }
 
+/* method groups (Baselines | Preserve desired direction) */
+.method-groups { display: flex; gap: 10px; flex-wrap: wrap; }
+.method-group { flex: 1 1 210px; min-width: 0; margin: 0; border: 1px solid var(--border); border-radius: var(--radius); padding: 4px 8px 8px; }
+.method-group legend { font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; color: var(--text-dim); padding: 0 4px; }
+
 /* method + component segmented buttons */
 .segmented { display: flex; flex-wrap: wrap; gap: 6px; }
 .seg-btn {
@@ -155,6 +160,13 @@ a { color: var(--desired); }
 .metric-hint { cursor: help; color: var(--neutral); font-size: 0.78rem; margin-left: 5px; }
 .method-metric-title { font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
 .badge-ours { background: var(--ours-soft); color: var(--ours); font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.04em; }
+
+/* ---- Directivity plot ---- */
+.directivity-svg { width: 320px; max-width: 100%; height: auto; flex: 0 0 auto; touch-action: none; }
+.directivity-readout { flex: 1 1 200px; min-width: 180px; }
+.dr-method { font-weight: 700; font-size: 0.95rem; margin-bottom: 2px; }
+.dr-value { font-family: var(--mono); font-size: 2rem; font-weight: 700; line-height: 1.1; }
+.dr-sub { color: var(--text-dim); font-size: 0.85rem; }
 
 /* ---- Visualization ---- */
 .viz-wrap { margin-top: 20px; }

@@ -26,7 +26,8 @@ match the repository name.
 - Switch **method** (ANC off · Conventional ANC · Analytical SSANC · DP-ANC) — playback
   keeps its position, with a short crossfade.
 - Solo the **full output**, **desired component**, or **non-desired component**.
-- **Swap source roles** to hear that preservation is assigned *spatially*, not by sound class.
+- Move the non-desired source **close to the desired direction** to hear the array's
+  angular-resolution limit — nearly-coincident sources cannot be separated.
 - Read the per-scene metrics (noise reduction, desired-signal distortion, output SNR).
 
 ## Local development

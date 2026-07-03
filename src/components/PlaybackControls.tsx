@@ -11,7 +11,6 @@ interface Props {
   volume: number;
   onToggle: () => void;
   onRestart: () => void;
-  onSwap: () => void;
   onChangeComponent: (c: ComponentId) => void;
   onChangeVolume: (v: number) => void;
 }
@@ -23,7 +22,6 @@ export function PlaybackControls({
   volume,
   onToggle,
   onRestart,
-  onSwap,
   onChangeComponent,
   onChangeVolume,
 }: Props) {
@@ -51,9 +49,6 @@ export function PlaybackControls({
             {isPlaying ? "❚❚ Pause" : "▶ Play"}
           </button>
           <button className="btn" onClick={onRestart} disabled={!canPlay}>↻ Restart</button>
-          <button className="btn" onClick={onSwap} title="Exchange the desired and non-desired roles, directions and contents">
-            ⇄ Swap source roles
-          </button>
           <div className="volume">
             <label htmlFor="vol">Volume</label>
             <input

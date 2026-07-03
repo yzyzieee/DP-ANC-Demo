@@ -4,6 +4,7 @@ import { useSceneManifest } from "./hooks/useSceneManifest";
 import { useSynchronizedAudio } from "./hooks/useSynchronizedAudio";
 import {
   METHOD_ORDER,
+  METHOD_LABELS,
   OURS_METHOD,
   type ComponentId,
   type ContentInfo,
@@ -12,9 +13,10 @@ import {
 } from "./types/scene";
 import {
   contentsInRole,
-  directionsInRole,
+  desiredDirsFor,
+  noiseDirsFor,
+  directivityFor,
   resolveScene,
-  swapSelection,
   type SceneSelection,
 } from "./lib/sceneResolver";
 import { AcousticScene } from "./components/AcousticScene";
@@ -24,8 +26,16 @@ import { MethodSelector } from "./components/MethodSelector";
 import { PlaybackControls } from "./components/PlaybackControls";
 import { MetricsPanel } from "./components/MetricsPanel";
 import { AudioVisualization } from "./components/AudioVisualization";
+import { DirectivityPlot } from "./components/DirectivityPlot";
 
 const VIZ_BINS = 900;
+
+const METHOD_COLOR: Record<MethodId, string> = {
+  mixture: "var(--neutral)",
+  conventional_anc: "#c2410c",
+  analytical_ssanc: "#7c3aed",
+  dp_anc: "var(--ours)",
+};
 
 function firstAvailableMethod(methods: Partial<Record<MethodId, { available: boolean }>>): MethodId {
   return METHOD_ORDER.find((m) => methods[m]?.available) ?? "mixture";
@@ -103,22 +113,26 @@ function Demo({ manifest }: { manifest: SceneManifest }) {
     () => contentsInRole(exp, "noise").map((id) => contentById.get(id)!).filter(Boolean),
     [exp, contentById]
   );
-  const desiredDirections = useMemo(() => directionsInRole(exp, "desired"), [exp]);
-  const noiseDirections = useMemo(() => directionsInRole(exp, "noise"), [exp]);
-
   // The scene actually loaded drives every displayed value (snap-to-available).
   const dDeg = scene.desired.direction_deg;
   const nDeg = scene.noise.direction_deg;
 
-  const onSwap = () =>
-    setSelection(
-      swapSelection({
-        desiredContent: scene.desired.content_id,
-        noiseContent: scene.noise.content_id,
-        desiredDeg: dDeg,
-        noiseDeg: nDeg,
-      })
-    );
+  // Content-aware grids: desired snaps to its anchors; noise snaps to the directions
+  // available for the current desired + noise content.
+  const desiredDirections = useMemo(
+    () => desiredDirsFor(exp, scene.desired.content_id),
+    [exp, scene.desired.content_id]
+  );
+  const noiseDirections = useMemo(
+    () => noiseDirsFor(exp, scene.desired.content_id, dDeg, scene.noise.content_id),
+    [exp, scene.desired.content_id, dDeg, scene.noise.content_id]
+  );
+
+  // Directivity samples (NR vs non-desired direction) for the selected method.
+  const directivitySamples = useMemo(
+    () => directivityFor(exp, scene.desired.content_id, dDeg, scene.noise.content_id, method),
+    [exp, scene.desired.content_id, dDeg, scene.noise.content_id, method]
+  );
 
   const vizColor =
     component === "desired"
@@ -163,7 +177,8 @@ function Demo({ manifest }: { manifest: SceneManifest }) {
             noiseDeg={nDeg}
             desiredLabel={scene.desired.label}
             noiseLabel={scene.noise.label}
-            grid={exp.angle_grid_deg}
+            desiredGrid={desiredDirections}
+            noiseGrid={noiseDirections}
             onChangeDesired={(deg) => setSelection((s) => ({ ...s, desiredDeg: deg }))}
             onChangeNoise={(deg) => setSelection((s) => ({ ...s, noiseDeg: deg }))}
           />
@@ -171,7 +186,7 @@ function Demo({ manifest }: { manifest: SceneManifest }) {
             <span><span className="dot" style={{ background: "var(--desired)" }} />Desired — {scene.desired.label} @ {Math.round(dDeg)}°</span>
             <span><span className="dot" style={{ background: "var(--noise)" }} />Non-desired — {scene.noise.label} @ {Math.round(nDeg)}°</span>
           </div>
-          <p className="scene-hint">Drag the blue (D) and orange (N) markers, or use the dropdowns. Directions snap to precomputed angles.</p>
+          <p className="scene-hint">Drag the orange (N) marker around, or use the dropdowns. Move it close to the blue (D) desired direction to hear the array's angular-resolution limit — nearly-coincident sources cannot be separated.</p>
         </section>
 
         {/* Right: controls */}
@@ -199,13 +214,20 @@ function Demo({ manifest }: { manifest: SceneManifest }) {
             volume={audio.volume}
             onToggle={audio.toggle}
             onRestart={audio.restart}
-            onSwap={onSwap}
             onChangeComponent={setComponent}
             onChangeVolume={audio.setVolume}
           />
           <p className="scene-hint">Headphones are recommended for comparison.</p>
         </section>
       </div>
+
+      <DirectivityPlot
+        samples={directivitySamples}
+        currentDeg={nDeg}
+        desiredDeg={dDeg}
+        color={METHOD_COLOR[method]}
+        methodLabel={METHOD_LABELS[method]}
+      />
 
       <MetricsPanel scene={scene} method={method} />
 

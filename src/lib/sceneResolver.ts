@@ -2,7 +2,7 @@
 // explicit nearest-available fallback and role-swap logic. All pure functions so
 // they can be unit-tested without React or the DOM (plan §14).
 
-import type { Experiment, Scene } from "../types/scene";
+import type { Experiment, MethodId, Scene } from "../types/scene";
 import { circularDistanceDeg } from "./angleUtils";
 
 /** A user's current selection within one experiment. */
@@ -110,4 +110,69 @@ export function directionsInRole(
   const seen = new Set<number>();
   for (const s of exp.scenes) seen.add(s[role].direction_deg);
   return [...seen].sort((a, b) => a - b);
+}
+
+/** Desired directions that have scenes for a given desired content (the anchors). */
+export function desiredDirsFor(exp: Experiment, desiredContent: string): number[] {
+  const s = new Set<number>();
+  for (const sc of exp.scenes)
+    if (sc.desired.content_id === desiredContent) s.add(sc.desired.direction_deg);
+  return [...s].sort((a, b) => a - b);
+}
+
+/** Non-desired directions available for a fixed desired (content+direction) and noise content. */
+export function noiseDirsFor(
+  exp: Experiment,
+  desiredContent: string,
+  desiredDeg: number,
+  noiseContent: string
+): number[] {
+  const s = new Set<number>();
+  for (const sc of exp.scenes)
+    if (
+      sc.desired.content_id === desiredContent &&
+      sc.desired.direction_deg === desiredDeg &&
+      sc.noise.content_id === noiseContent
+    )
+      s.add(sc.noise.direction_deg);
+  return [...s].sort((a, b) => a - b);
+}
+
+export interface DirectivitySample {
+  deg: number;
+  nr: number | null;
+  osnr: number | null;
+  dist: number | null;
+}
+
+/**
+ * Metrics vs non-desired direction, for a fixed desired (content+dir) + noise content +
+ * method — the samples for the directivity plot. NR shows cancellation; output SNR shows
+ * the overall directional behaviour (deep notch toward the desired direction).
+ */
+export function directivityFor(
+  exp: Experiment,
+  desiredContent: string,
+  desiredDeg: number,
+  noiseContent: string,
+  method: MethodId
+): DirectivitySample[] {
+  const out: DirectivitySample[] = [];
+  for (const sc of exp.scenes) {
+    if (
+      sc.desired.content_id === desiredContent &&
+      sc.desired.direction_deg === desiredDeg &&
+      sc.noise.content_id === noiseContent
+    ) {
+      const m = sc.methods[method];
+      if (m?.available && m.metrics)
+        out.push({
+          deg: sc.noise.direction_deg,
+          nr: m.metrics.nr_db,
+          osnr: m.metrics.output_snr_db,
+          dist: m.metrics.desired_distortion_db,
+        });
+    }
+  }
+  return out.sort((a, b) => a.deg - b.deg);
 }

@@ -5,9 +5,12 @@ import {
   findNearest,
   contentsInRole,
   directionsInRole,
+  desiredDirsFor,
+  noiseDirsFor,
+  directivityFor,
   type SceneSelection,
 } from "./sceneResolver";
-import type { Experiment, Scene } from "../types/scene";
+import type { Experiment, MethodId, Scene } from "../types/scene";
 
 function mkScene(id: string, dc: string, dd: number, nc: string, nd: number): Scene {
   return {
@@ -82,5 +85,46 @@ describe("helpers", () => {
   });
   it("directionsInRole is sorted + distinct", () => {
     expect(directionsInRole(exp, "noise")).toEqual([0, 90, 135]);
+  });
+});
+
+function withMethod(sc: Scene, m: MethodId, nr: number): Scene {
+  sc.methods[m] = {
+    label: m,
+    available: true,
+    audio: { output: "o", desired: "d", noise: "n" },
+    metrics: { nr_db: nr, desired_distortion_db: -10, output_snr_db: 5, stoi: null },
+  };
+  return sc;
+}
+
+describe("content-aware grids", () => {
+  it("desiredDirsFor lists the anchors for a content", () => {
+    expect(desiredDirsFor(exp, "alarm")).toEqual([0]);
+    expect(desiredDirsFor(exp, "jackhammer")).toEqual([90]);
+  });
+  it("noiseDirsFor lists noise dirs for a fixed desired", () => {
+    expect(noiseDirsFor(exp, "alarm", 0, "jackhammer")).toEqual([90, 135]);
+    expect(noiseDirsFor(exp, "gaussian", 0, "street")).toEqual([90]);
+    expect(noiseDirsFor(exp, "alarm", 999, "jackhammer")).toEqual([]); // no such desired dir
+  });
+});
+
+describe("directivityFor", () => {
+  const e2: Experiment = {
+    ...exp,
+    scenes: [
+      withMethod(mkScene("y", "alarm", 0, "jackhammer", 135), "dp_anc", 24),
+      withMethod(mkScene("x", "alarm", 0, "jackhammer", 90), "dp_anc", 20),
+    ],
+  };
+  it("returns NR + output-SNR samples sorted by non-desired angle", () => {
+    expect(directivityFor(e2, "alarm", 0, "jackhammer", "dp_anc")).toEqual([
+      { deg: 90, nr: 20, osnr: 5, dist: -10 },
+      { deg: 135, nr: 24, osnr: 5, dist: -10 },
+    ]);
+  });
+  it("is empty when the method has no metrics", () => {
+    expect(directivityFor(e2, "alarm", 0, "jackhammer", "conventional_anc")).toEqual([]);
   });
 });
