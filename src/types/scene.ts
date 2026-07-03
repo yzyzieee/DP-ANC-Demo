@@ -21,10 +21,18 @@ export const METHOD_ORDER: MethodId[] = [
 ];
 
 export const METHOD_LABELS: Record<MethodId, string> = {
-  mixture: "Original mixture",
+  mixture: "ANC off",
   conventional_anc: "Conventional ANC",
   analytical_ssanc: "Analytical SSANC",
   dp_anc: "DP-ANC",
+};
+
+/** One-line description of what each method does, for tooltips and the grouping note. */
+export const METHOD_BLURB: Record<MethodId, string> = {
+  mixture: "No control — the original noisy mixture, shown as the reference.",
+  conventional_anc: "Removes all sound at the error mic, including the desired direction.",
+  analytical_ssanc: "Removes the noise while preserving the desired direction (per-scene analytical).",
+  dp_anc: "Removes the noise while preserving the desired direction (learned, one forward pass).",
 };
 
 /** Which method is "ours" — used only for a subtle highlight, never for an inline "(ours)" tag. */

@@ -74,8 +74,15 @@ HP_CKPT = RESEARCH_ROOT / "v8_hearpiece" / "checkpoints" / "best_model_v8_dvar_l
 HP_SNR_DB = -5.0
 HP_LAMBDA = 1.0
 # angles must lie on the measured 7.5° azimuth grid
+# Hearpiece: desired fixed at 45deg, non-desired (street noise) swept around the full
+# circle on the measured grid, plus a drilling scene and its role swap.
 HP_SCENES = [
-    ("train_door_alarm", 45, "street_music", 210, None),   # default: balanced comparison
+    ("train_door_alarm", 45, "street_music", 135, None),   # default
+    ("train_door_alarm", 45, "street_music", 90, None),
+    ("train_door_alarm", 45, "street_music", 180, None),
+    ("train_door_alarm", 45, "street_music", 225, None),
+    ("train_door_alarm", 45, "street_music", 270, None),
+    ("train_door_alarm", 45, "street_music", 315, None),
     ("train_door_alarm", 45, "drilling", 135, None),
     ("drilling", 135, "train_door_alarm", 45, "hp__train_door_alarm_45__drilling_135"),  # role swap
 ]
@@ -112,20 +119,38 @@ CONTENT_SOURCE = {
     "drilling": "UrbanSound8K (CC-BY-NC)",
 }
 
-# ---- simulated-array MVP scenes (desired, θd, noise, θn); swap_of links role swaps
-SIM_SCENES = [
-    ("train_door_alarm", 0, "jackhammer", 90, None),
-    ("train_door_alarm", 0, "jackhammer", 135, None),
-    ("train_door_alarm", 0, "engine_idling", 90, None),
-    ("jackhammer", 90, "train_door_alarm", 0, "sim__train_door_alarm_0__jackhammer_90"),  # swap of #1
-    ("vehicle_alarm", 45, "street_music", 135, None),
-    ("bandlimited_gaussian", 0, "drilling", 90, None),
-]
+# ---- simulated-array scenes ----
+# Flagship duo train-door alarm <-> jackhammer: FULL 45deg cross product in BOTH role
+# assignments so both markers drag freely over 360deg and Swap is exact from any position.
+# Plus a few accent scenes to sample other contents.
 ANGLE_GRID = [0, 45, 90, 135, 180, 225, 270, 315]
+
+
+def _flagship_sim_scenes():
+    duo = [("train_door_alarm", "jackhammer"), ("jackhammer", "train_door_alarm")]
+    default = ("train_door_alarm", 0, "jackhammer", 90, None)
+    out = [default]                                    # keep the canonical scene first (UI default)
+    for dc, nc in duo:
+        for dd in ANGLE_GRID:
+            for nd in ANGLE_GRID:
+                if dd == nd:
+                    continue                            # keep >= 45deg desired/noise separation
+                if (dc, dd, nc, nd) == default[:4]:
+                    continue                            # already added
+                out.append((dc, dd, nc, nd, None))
+    return out
+
+
+SIM_ACCENTS = [
+    ("train_door_alarm", 0, "engine_idling", 90, None),
+    ("bandlimited_gaussian", 0, "drilling", 90, None),
+    ("vehicle_alarm", 45, "street_music", 135, None),
+]
+SIM_SCENES = _flagship_sim_scenes() + SIM_ACCENTS
 
 METHODS = ["mixture", "conventional_anc", "analytical_ssanc", "dp_anc"]
 METHOD_LABELS = {
-    "mixture": "Original mixture", "conventional_anc": "Conventional ANC",
+    "mixture": "ANC off", "conventional_anc": "Conventional ANC",
     "analytical_ssanc": "Analytical SSANC", "dp_anc": "DP-ANC",
 }
 

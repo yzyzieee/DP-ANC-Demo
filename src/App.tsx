@@ -24,7 +24,6 @@ import { MethodSelector } from "./components/MethodSelector";
 import { PlaybackControls } from "./components/PlaybackControls";
 import { MetricsPanel } from "./components/MetricsPanel";
 import { AudioVisualization } from "./components/AudioVisualization";
-import { Disclaimer } from "./components/Disclaimer";
 
 const VIZ_BINS = 900;
 
@@ -145,8 +144,6 @@ function Demo({ manifest }: { manifest: SceneManifest }) {
         </nav>
       </header>
 
-      <Disclaimer text={manifest.disclaimer} />
-
       <ExperimentTabs experiments={experiments} currentId={experimentId} onSelect={setExperimentId} />
 
       {!resolved.exact && resolved.fallbackNote && (
@@ -221,8 +218,9 @@ function Demo({ manifest }: { manifest: SceneManifest }) {
       />
 
       <footer className="footer" id="citation">
-        <p>{manifest.disclaimer}</p>
-        <p>Method names follow the paper: Original mixture · Conventional ANC · Analytical SSANC · DP-ANC.</p>
+        <p><strong>Offline auralization.</strong> {manifest.disclaimer}</p>
+        <p>Methods: ANC off (reference) · Conventional ANC · Analytical SSANC · DP-ANC.</p>
+        <p>Contact: <a href="mailto:ziyi016@e.ntu.edu.sg">ziyi016@e.ntu.edu.sg</a></p>
       </footer>
     </div>
   );

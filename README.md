@@ -23,7 +23,7 @@ match the repository name.
   measured binaural references, error mic at the right eardrum).
 - Choose the **desired** and **non-desired** sound contents and their **directions** (drag the
   markers in the scene, or use the dropdowns; directions snap to precomputed angles).
-- Switch **method** (Original mixture · Conventional ANC · Analytical SSANC · DP-ANC) — playback
+- Switch **method** (ANC off · Conventional ANC · Analytical SSANC · DP-ANC) — playback
   keeps its position, with a short crossfade.
 - Solo the **full output**, **desired component**, or **non-desired component**.
 - **Swap source roles** to hear that preservation is assigned *spatially*, not by sound class.
@@ -71,7 +71,7 @@ For each scene it:
 2. Uses a **fair A/B protocol** (no optimization leakage): the control filter *W* for every
    method is estimated on an **independent** realization *A* over a 0.5 s observation window,
    then applied as a fixed FIR to an independent realization *B* — the clip you hear.
-   - **Original mixture** = no control (W = 0).
+   - **ANC off** = no control (W = 0), the untouched reference.
    - **Conventional ANC** = unconstrained Wiener (maximizes cancellation, destroys the desired).
    - **Analytical SSANC** = Frost / distortionless-to-direction constrained Wiener.
    - **DP-ANC** = the network's one-forward-pass prediction from the reference mics + θ_d.

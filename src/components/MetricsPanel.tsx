@@ -39,7 +39,7 @@ export function MetricsPanel({ scene, method }: Props) {
           ))}
           {isMixture && (
             <p className="metric-label" style={{ marginTop: 4 }}>
-              The original mixture is the reference: noise reduction is 0 dB by definition.
+              With ANC off nothing is cancelled — this is the reference, so noise reduction is 0 dB by definition.
             </p>
           )}
         </div>

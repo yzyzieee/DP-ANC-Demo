@@ -1,6 +1,7 @@
 import {
   METHOD_ORDER,
   METHOD_LABELS,
+  METHOD_BLURB,
   OURS_METHOD,
   type MethodId,
   type Scene,
@@ -26,7 +27,7 @@ export function MethodSelector({ scene, current, onSelect }: Props) {
               className={`seg-btn${m === OURS_METHOD ? " ours" : ""}`}
               aria-pressed={m === current}
               disabled={!available}
-              title={!available ? entry?.note ?? "Not available for this scene" : METHOD_LABELS[m]}
+              title={!available ? entry?.note ?? "Not available for this scene" : METHOD_BLURB[m]}
               onClick={() => available && onSelect(m)}
             >
               {METHOD_LABELS[m]}
@@ -34,6 +35,12 @@ export function MethodSelector({ scene, current, onSelect }: Props) {
           );
         })}
       </div>
+      <p className="scene-hint" style={{ marginTop: 8 }}>
+        <strong>ANC off</strong> = untouched reference · <strong>Conventional ANC</strong> removes
+        everything (desired included) · <strong>Analytical SSANC</strong> and{" "}
+        <strong>DP-ANC</strong> remove the noise while <em>preserving the desired direction</em>.
+      </p>
+      <p className="scene-hint" style={{ marginTop: 4 }}>{METHOD_BLURB[current]}</p>
     </div>
   );
 }
