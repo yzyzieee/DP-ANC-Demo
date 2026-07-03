@@ -44,7 +44,13 @@ a { color: var(--desired); }
 .header { border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 20px; }
 .header h1 { font-size: 1.5rem; margin: 0 0 4px; letter-spacing: -0.01em; }
 .header .subtitle { color: var(--text-dim); margin: 0 0 10px; font-size: 0.98rem; }
+.header .byline { color: var(--text); font-size: 0.9rem; margin: 2px 0; }
+.header .paper-note { color: var(--text-dim); font-size: 0.86rem; margin: 2px 0 10px; }
+.header .paper-note .tbd { color: var(--neutral); font-style: italic; }
 .header .links { display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.9rem; }
+.refs { list-style: none; padding: 0; margin: 8px 0 16px; display: grid; gap: 8px; }
+.refs li { font-size: 0.85rem; line-height: 1.45; }
+.ref-label { font-weight: 700; color: var(--text); }
 .header .links a { text-decoration: none; font-weight: 600; }
 .header .links a:hover { text-decoration: underline; }
 

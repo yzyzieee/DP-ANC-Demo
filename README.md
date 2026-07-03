@@ -28,6 +28,10 @@ match the repository name.
 - Solo the **full output**, **desired component**, or **non-desired component**.
 - Move the non-desired source **close to the desired direction** to hear the array's
   angular-resolution limit — nearly-coincident sources cannot be separated.
+- See a **polar directivity plot** (Preservation / Output SNR / Noise reduction vs the
+  non-desired direction) whose cursor follows the dragged source.
+- Desired contents include **clean synthetic alarms** and **clean speech** (STOI is shown
+  for speech scenes).
 - Read the per-scene metrics (noise reduction, desired-signal distortion, output SNR).
 
 ## Local development
@@ -134,9 +138,13 @@ site are always recomputed from the exact web assets — never copied from exper
 ## Licenses and attribution
 
 - **Code**: MIT (see `LICENSE`).
-- **Desired-source clips** are derived from the **FSD50K** alarm subset (Creative Commons; see
-  the FSD50K dataset license). **Non-desired-source clips** are derived from **UrbanSound8K**
-  (Creative Commons **BY-NC** — non-commercial, attribution required). The demo audio are
-  transformed derivatives (convolved with acoustic paths, band-limited, mixed, and filtered) and
-  are redistributed here for **non-commercial academic** demonstration with attribution. If you
-  publish this demo, keep the attributions and respect the non-commercial terms of UrbanSound8K.
+- **Desired sources**: clean synthetic alarms (two-tone siren, beeping) are generated
+  from oscillators (no external data). The **Speech** content is an 8 kHz recording from the
+  **Open Speech Repository** (Harvard sentences, provided free for speech-quality testing; text
+  is public domain) — see `scripts/assets/speech/README.md`.
+- **Non-desired sources** are derived from **UrbanSound8K** (Creative Commons **BY-NC** —
+  non-commercial, attribution required).
+- The demo audio are transformed derivatives (convolved with acoustic paths, band-limited,
+  mixed, filtered) redistributed here for **non-commercial academic** demonstration with
+  attribution. If you publish this demo, keep the attributions and respect the non-commercial
+  terms of UrbanSound8K.

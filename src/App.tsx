@@ -37,6 +37,34 @@ const METHOD_COLOR: Record<MethodId, string> = {
   dp_anc: "var(--ours)",
 };
 
+// TODO: set the TASLP paper URL when available; empty string shows "coming soon".
+const PAPER_URL = "";
+const REPO_URL = "https://github.com/yzyzieee/DP-ANC-Demo";
+
+// References. Method citations verified from the original publications.
+const REFERENCES: { label: string; text: string; href?: string }[] = [
+  {
+    label: "DP-ANC (this work)",
+    text: "Yang Ziyi et al., “Deep Learning-Based Directional Preservation Active Noise Control (DP-ANC),” submitted to IEEE/ACM Trans. Audio, Speech, Language Process. (TASLP), 2026.",
+    href: PAPER_URL || undefined,
+  },
+  {
+    label: "Conventional ANC",
+    text: "S. M. Kuo and D. R. Morgan, “Active noise control: a tutorial review,” Proc. IEEE, vol. 87, no. 6, pp. 943–973, 1999.",
+    href: "https://doi.org/10.1109/5.763310",
+  },
+  {
+    label: "Analytical SSANC",
+    text: "T. Xiao, B. Xu, and C. Zhao, “Spatially selective active noise control systems,” J. Acoust. Soc. Am., vol. 153, no. 5, pp. 2733–2744, 2023.",
+    href: "https://doi.org/10.1121/10.0019336",
+  },
+  {
+    label: "Frost linear constraint",
+    text: "O. L. Frost III, “An algorithm for linearly constrained adaptive array processing,” Proc. IEEE, vol. 60, no. 8, pp. 926–935, 1972.",
+    href: "https://doi.org/10.1109/PROC.1972.8817",
+  },
+];
+
 function firstAvailableMethod(methods: Partial<Record<MethodId, { available: boolean }>>): MethodId {
   return METHOD_ORDER.find((m) => methods[m]?.available) ?? "mixture";
 }
@@ -148,13 +176,24 @@ function Demo({ manifest }: { manifest: SceneManifest }) {
   return (
     <div className="app">
       <header className="header">
-        <h1>Directional Preservation Active Noise Control</h1>
-        <p className="subtitle">Interactive listening demo for DP-ANC</p>
+        <h1>Directional Preservation Active Noise Control (DP-ANC)</h1>
+        <p className="subtitle">Interactive listening demo</p>
+        <p className="byline">
+          Yang Ziyi · Smart Nation Translational Lab (SNTL), School of Electrical and Electronic
+          Engineering, Nanyang Technological University
+        </p>
+        <p className="paper-note">
+          Demo of the method proposed in our paper submitted to <em>IEEE/ACM Transactions on Audio,
+          Speech, and Language Processing</em> (TASLP). {PAPER_URL
+            ? <a href={PAPER_URL} target="_blank" rel="noreferrer">Read the paper</a>
+            : <span className="tbd">Paper link — coming soon.</span>}
+        </p>
         <nav className="links">
-          <a href="#" aria-disabled="true">Paper</a>
-          <a href="https://github.com/yzyzieee/DP-ANC-Demo" target="_blank" rel="noreferrer">Code</a>
-          <a href="#" aria-disabled="true">Audio data</a>
-          <a href="#citation">Citation</a>
+          {PAPER_URL
+            ? <a href={PAPER_URL} target="_blank" rel="noreferrer">Paper</a>
+            : <a href="#references" title="Paper link coming soon">Paper</a>}
+          <a href={REPO_URL} target="_blank" rel="noreferrer">Code</a>
+          <a href="#references">References &amp; citation</a>
         </nav>
       </header>
 
@@ -239,10 +278,19 @@ function Demo({ manifest }: { manifest: SceneManifest }) {
         color={vizColor}
       />
 
-      <footer className="footer" id="citation">
+      <footer className="footer" id="references">
+        <h2>References</h2>
+        <ul className="refs">
+          {REFERENCES.map((r) => (
+            <li key={r.label}>
+              <span className="ref-label">{r.label}:</span>{" "}
+              {r.href ? <a href={r.href} target="_blank" rel="noreferrer">{r.text}</a> : r.text}
+            </li>
+          ))}
+        </ul>
         <p><strong>Offline auralization.</strong> {manifest.disclaimer}</p>
         <p>Methods: ANC off (reference) · Conventional ANC · Analytical SSANC · DP-ANC.</p>
-        <p>Contact: <a href="mailto:ziyi016@e.ntu.edu.sg">ziyi016@e.ntu.edu.sg</a></p>
+        <p>Contact: Yang Ziyi · <a href="mailto:ziyi016@e.ntu.edu.sg">ziyi016@e.ntu.edu.sg</a> · Smart Nation Translational Lab (SNTL), NTU EEE.</p>
       </footer>
     </div>
   );

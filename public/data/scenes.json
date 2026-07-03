@@ -4,6 +4,12 @@
   "sample_rate": 8000,
   "contents": [
     {
+      "id": "speech",
+      "label": "Speech",
+      "role": "desired",
+      "source": "Open Speech Repository (Harvard sentences, free for testing)"
+    },
+    {
       "id": "siren",
       "label": "Two-tone siren",
       "role": "desired",
@@ -9239,6 +9245,3046 @@
           }
         },
         {
+          "id": "sim__speech_0__jackhammer_5",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 0
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 5
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -26.2,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_5/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_5/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_5/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.01,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_5/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_5/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_5/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 26.86,
+                "desired_distortion_db": -0.06,
+                "output_snr_db": -14.97,
+                "stoi": 0.793
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_5/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_5/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_5/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 16.71,
+                "desired_distortion_db": -1.92,
+                "output_snr_db": -2.68,
+                "stoi": 0.949
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_5/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_5/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_5/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 23.08,
+                "desired_distortion_db": -0.63,
+                "output_snr_db": -9.19,
+                "stoi": 0.982
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_0__jackhammer_10",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 0
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 10
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -25.9,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_10/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_10/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_10/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.02,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_10/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_10/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_10/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 26.87,
+                "desired_distortion_db": -0.09,
+                "output_snr_db": -9.14,
+                "stoi": 0.81
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_10/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_10/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_10/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 19.89,
+                "desired_distortion_db": -2.37,
+                "output_snr_db": 2.92,
+                "stoi": 0.935
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_10/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_10/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_10/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 25.08,
+                "desired_distortion_db": -1.08,
+                "output_snr_db": -2.77,
+                "stoi": 0.967
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_0__jackhammer_15",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 0
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 15
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -25.06,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_15/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_15/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_15/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.01,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_15/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_15/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_15/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 25.73,
+                "desired_distortion_db": -0.06,
+                "output_snr_db": -7.13,
+                "stoi": 0.824
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_15/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_15/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_15/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 18.94,
+                "desired_distortion_db": -2.45,
+                "output_snr_db": 2.25,
+                "stoi": 0.933
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_15/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_15/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_15/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 23.71,
+                "desired_distortion_db": -1.82,
+                "output_snr_db": 0.17,
+                "stoi": 0.976
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_0__jackhammer_22p5",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 0
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 22.5
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -27.51,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_22p5/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_22p5/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_22p5/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.01,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_22p5/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_22p5/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_22p5/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 24.1,
+                "desired_distortion_db": -0.12,
+                "output_snr_db": -6.82,
+                "stoi": 0.81
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_22p5/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_22p5/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_22p5/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 20.31,
+                "desired_distortion_db": -2.45,
+                "output_snr_db": 3.56,
+                "stoi": 0.931
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_22p5/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_22p5/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_22p5/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 19.74,
+                "desired_distortion_db": -3.56,
+                "output_snr_db": 0.85,
+                "stoi": 0.984
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_0__jackhammer_30",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 0
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 30
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -25.02,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_30/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_30/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_30/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.01,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_30/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_30/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_30/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 26.74,
+                "desired_distortion_db": -0.02,
+                "output_snr_db": -3.21,
+                "stoi": 0.756
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_30/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_30/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_30/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 23.88,
+                "desired_distortion_db": -2.4,
+                "output_snr_db": 7.46,
+                "stoi": 0.933
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_30/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_30/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_30/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 22.9,
+                "desired_distortion_db": -4.73,
+                "output_snr_db": 5.68,
+                "stoi": 0.983
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_0__jackhammer_60",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 0
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 60
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -22.89,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_60/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_60/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_60/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.01,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_60/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_60/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_60/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 26.76,
+                "desired_distortion_db": -0.23,
+                "output_snr_db": 2.99,
+                "stoi": 0.756
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_60/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_60/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_60/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 23.55,
+                "desired_distortion_db": -2.59,
+                "output_snr_db": 7.82,
+                "stoi": 0.936
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_60/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_60/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_60/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 21.62,
+                "desired_distortion_db": -10.72,
+                "output_snr_db": 13.09,
+                "stoi": 0.996
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_0__jackhammer_90",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 0
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 90
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -27.45,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_90/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_90/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_90/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.0,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_90/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_90/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_90/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 21.05,
+                "desired_distortion_db": -0.12,
+                "output_snr_db": -3.66,
+                "stoi": 0.794
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_90/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_90/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_90/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 19.62,
+                "desired_distortion_db": -2.49,
+                "output_snr_db": 3.92,
+                "stoi": 0.935
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_90/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_90/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_90/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 14.58,
+                "desired_distortion_db": -10.6,
+                "output_snr_db": 6.63,
+                "stoi": 0.996
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_0__jackhammer_120",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 0
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 120
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -26.44,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_120/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_120/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_120/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -9.95,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_120/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_120/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_120/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 26.69,
+                "desired_distortion_db": -0.17,
+                "output_snr_db": 0.18,
+                "stoi": 0.778
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_120/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_120/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_120/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 21.87,
+                "desired_distortion_db": -2.56,
+                "output_snr_db": 6.24,
+                "stoi": 0.934
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_120/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_120/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_120/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 24.74,
+                "desired_distortion_db": -10.33,
+                "output_snr_db": 16.77,
+                "stoi": 0.97
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_0__jackhammer_150",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 0
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 150
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -28.44,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_150/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_150/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_150/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -9.99,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_150/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_150/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_150/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 24.88,
+                "desired_distortion_db": -0.36,
+                "output_snr_db": 0.13,
+                "stoi": 0.802
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_150/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_150/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_150/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 24.52,
+                "desired_distortion_db": -2.41,
+                "output_snr_db": 8.97,
+                "stoi": 0.933
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_150/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_150/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_150/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 19.66,
+                "desired_distortion_db": -14.8,
+                "output_snr_db": 10.92,
+                "stoi": 0.996
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_0__jackhammer_180",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 0
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 180
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -29.03,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_180/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_180/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_180/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.01,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_180/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_180/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_180/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 26.65,
+                "desired_distortion_db": -0.24,
+                "output_snr_db": 2.98,
+                "stoi": 0.767
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_180/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_180/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_180/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 22.78,
+                "desired_distortion_db": -2.46,
+                "output_snr_db": 7.08,
+                "stoi": 0.929
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_180/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_180/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_180/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 22.86,
+                "desired_distortion_db": -16.02,
+                "output_snr_db": 13.68,
+                "stoi": 0.99
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_0__jackhammer_210",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 0
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 210
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -23.49,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_210/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_210/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_210/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -9.97,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_210/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_210/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_210/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 26.68,
+                "desired_distortion_db": -0.16,
+                "output_snr_db": 1.66,
+                "stoi": 0.776
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_210/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_210/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_210/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 24.62,
+                "desired_distortion_db": -2.58,
+                "output_snr_db": 9.02,
+                "stoi": 0.932
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_210/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_210/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_210/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 24.99,
+                "desired_distortion_db": -12.69,
+                "output_snr_db": 16.68,
+                "stoi": 0.996
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_0__jackhammer_240",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 0
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 240
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -23.53,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_240/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_240/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_240/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.01,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_240/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_240/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_240/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 26.08,
+                "desired_distortion_db": -0.16,
+                "output_snr_db": -1.14,
+                "stoi": 0.774
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_240/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_240/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_240/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 19.62,
+                "desired_distortion_db": -2.35,
+                "output_snr_db": 3.74,
+                "stoi": 0.929
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_240/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_240/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_240/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 24.32,
+                "desired_distortion_db": -14.52,
+                "output_snr_db": 15.23,
+                "stoi": 0.974
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_0__jackhammer_270",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 0
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 270
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -25.04,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_270/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_270/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_270/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.01,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_270/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_270/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_270/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 26.7,
+                "desired_distortion_db": -0.18,
+                "output_snr_db": 1.54,
+                "stoi": 0.794
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_270/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_270/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_270/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 25.34,
+                "desired_distortion_db": -2.44,
+                "output_snr_db": 9.53,
+                "stoi": 0.934
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_270/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_270/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_270/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 24.16,
+                "desired_distortion_db": -8.13,
+                "output_snr_db": 16.69,
+                "stoi": 0.997
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_0__jackhammer_300",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 0
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 300
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -28.3,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_300/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_300/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_300/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.01,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_300/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_300/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_300/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 26.92,
+                "desired_distortion_db": -0.2,
+                "output_snr_db": 2.96,
+                "stoi": 0.768
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_300/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_300/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_300/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 24.95,
+                "desired_distortion_db": -2.46,
+                "output_snr_db": 9.12,
+                "stoi": 0.932
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_300/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_300/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_300/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 23.25,
+                "desired_distortion_db": -14.97,
+                "output_snr_db": 12.92,
+                "stoi": 0.996
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_0__jackhammer_330",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 0
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 330
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -26.03,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_330/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_330/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_330/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -9.88,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_330/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_330/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_330/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 23.11,
+                "desired_distortion_db": -0.14,
+                "output_snr_db": -6.13,
+                "stoi": 0.793
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_330/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_330/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_330/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 18.75,
+                "desired_distortion_db": -2.47,
+                "output_snr_db": 2.64,
+                "stoi": 0.933
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_330/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_330/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_330/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 14.85,
+                "desired_distortion_db": -6.64,
+                "output_snr_db": -0.12,
+                "stoi": 0.989
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_0__jackhammer_337p5",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 0
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 337.5
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -25.12,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_337p5/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_337p5/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_337p5/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -9.97,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_337p5/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_337p5/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_337p5/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 26.55,
+                "desired_distortion_db": -0.15,
+                "output_snr_db": -5.36,
+                "stoi": 0.804
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_337p5/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_337p5/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_337p5/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 20.72,
+                "desired_distortion_db": -2.46,
+                "output_snr_db": 4.06,
+                "stoi": 0.934
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_337p5/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_337p5/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_337p5/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 15.01,
+                "desired_distortion_db": -3.61,
+                "output_snr_db": -3.51,
+                "stoi": 0.984
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_0__jackhammer_345",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 0
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 345
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -23.65,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_345/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_345/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_345/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.01,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_345/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_345/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_345/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 25.37,
+                "desired_distortion_db": -0.13,
+                "output_snr_db": -6.73,
+                "stoi": 0.833
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_345/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_345/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_345/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 18.15,
+                "desired_distortion_db": -2.52,
+                "output_snr_db": 1.59,
+                "stoi": 0.933
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_345/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_345/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_345/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 22.93,
+                "desired_distortion_db": -2.27,
+                "output_snr_db": 1.58,
+                "stoi": 0.984
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_0__jackhammer_350",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 0
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 350
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -22.69,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_350/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_350/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_350/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.02,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_350/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_350/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_350/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 26.05,
+                "desired_distortion_db": -0.1,
+                "output_snr_db": -9.22,
+                "stoi": 0.787
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_350/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_350/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_350/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 18.69,
+                "desired_distortion_db": -2.5,
+                "output_snr_db": 1.82,
+                "stoi": 0.939
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_350/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_350/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_350/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 23.62,
+                "desired_distortion_db": -0.92,
+                "output_snr_db": -4.91,
+                "stoi": 0.974
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_0__jackhammer_355",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 0
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 355
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -24.86,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_355/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_355/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_355/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.02,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_355/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_355/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_355/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 24.12,
+                "desired_distortion_db": -0.1,
+                "output_snr_db": -18.12,
+                "stoi": 0.834
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_355/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_355/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_355/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 11.22,
+                "desired_distortion_db": -1.91,
+                "output_snr_db": -8.68,
+                "stoi": 0.943
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__jackhammer_355/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__jackhammer_355/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__jackhammer_355/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 19.16,
+                "desired_distortion_db": -0.6,
+                "output_snr_db": -12.34,
+                "stoi": 0.962
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_90__jackhammer_0",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 90
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 0
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -24.07,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_0/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_0/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_0/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.01,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_0/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_0/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_0/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 27.13,
+                "desired_distortion_db": -0.17,
+                "output_snr_db": 2.29,
+                "stoi": 0.78
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_0/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_0/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_0/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 24.19,
+                "desired_distortion_db": -2.52,
+                "output_snr_db": 8.65,
+                "stoi": 0.933
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_0/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_0/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_0/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 23.78,
+                "desired_distortion_db": -12.62,
+                "output_snr_db": 15.53,
+                "stoi": 0.998
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_90__jackhammer_30",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 90
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 30
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -22.3,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_30/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_30/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_30/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -9.76,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_30/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_30/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_30/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 26.81,
+                "desired_distortion_db": -0.22,
+                "output_snr_db": -0.64,
+                "stoi": 0.771
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_30/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_30/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_30/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 22.93,
+                "desired_distortion_db": -2.63,
+                "output_snr_db": 7.67,
+                "stoi": 0.937
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_30/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_30/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_30/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 19.03,
+                "desired_distortion_db": -14.36,
+                "output_snr_db": 10.21,
+                "stoi": 0.988
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_90__jackhammer_60",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 90
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 60
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -27.98,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_60/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_60/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_60/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.0,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_60/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_60/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_60/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 20.11,
+                "desired_distortion_db": -0.15,
+                "output_snr_db": -8.55,
+                "stoi": 0.761
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_60/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_60/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_60/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 19.6,
+                "desired_distortion_db": -2.63,
+                "output_snr_db": 3.83,
+                "stoi": 0.935
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_60/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_60/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_60/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 20.67,
+                "desired_distortion_db": -5.66,
+                "output_snr_db": 4.76,
+                "stoi": 0.995
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_90__jackhammer_67p5",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 90
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 67.5
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -23.47,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_67p5/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_67p5/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_67p5/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.01,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_67p5/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_67p5/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_67p5/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 26.99,
+                "desired_distortion_db": -0.05,
+                "output_snr_db": -3.08,
+                "stoi": 0.755
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_67p5/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_67p5/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_67p5/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 23.95,
+                "desired_distortion_db": -2.54,
+                "output_snr_db": 7.65,
+                "stoi": 0.933
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_67p5/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_67p5/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_67p5/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 24.86,
+                "desired_distortion_db": -2.23,
+                "output_snr_db": 2.58,
+                "stoi": 0.976
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_90__jackhammer_75",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 90
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 75
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -23.27,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_75/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_75/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_75/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -9.99,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_75/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_75/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_75/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 26.82,
+                "desired_distortion_db": -0.05,
+                "output_snr_db": -9.18,
+                "stoi": 0.759
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_75/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_75/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_75/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 23.15,
+                "desired_distortion_db": -2.51,
+                "output_snr_db": 5.97,
+                "stoi": 0.937
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_75/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_75/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_75/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 22.4,
+                "desired_distortion_db": -1.33,
+                "output_snr_db": -3.82,
+                "stoi": 0.972
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_90__jackhammer_80",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 90
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 80
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -28.18,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_80/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_80/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_80/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.02,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_80/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_80/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_80/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 26.34,
+                "desired_distortion_db": 0.03,
+                "output_snr_db": -12.28,
+                "stoi": 0.773
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_80/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_80/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_80/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 20.74,
+                "desired_distortion_db": -2.36,
+                "output_snr_db": 2.87,
+                "stoi": 0.939
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_80/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_80/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_80/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 23.04,
+                "desired_distortion_db": 0.17,
+                "output_snr_db": -12.88,
+                "stoi": 0.936
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_90__jackhammer_85",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 90
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 85
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -23.98,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_85/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_85/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_85/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.01,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_85/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_85/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_85/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 26.43,
+                "desired_distortion_db": 0.03,
+                "output_snr_db": -13.68,
+                "stoi": 0.819
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_85/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_85/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_85/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 18.77,
+                "desired_distortion_db": -2.01,
+                "output_snr_db": -0.86,
+                "stoi": 0.94
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_85/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_85/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_85/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 20.79,
+                "desired_distortion_db": -0.11,
+                "output_snr_db": -18.75,
+                "stoi": 0.937
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_90__jackhammer_95",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 90
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 95
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -25.6,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_95/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_95/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_95/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -9.96,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_95/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_95/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_95/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 26.09,
+                "desired_distortion_db": 0.09,
+                "output_snr_db": -12.77,
+                "stoi": 0.831
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_95/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_95/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_95/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 12.23,
+                "desired_distortion_db": -2.55,
+                "output_snr_db": -5.44,
+                "stoi": 0.945
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_95/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_95/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_95/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 20.2,
+                "desired_distortion_db": -0.74,
+                "output_snr_db": -10.99,
+                "stoi": 0.983
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_90__jackhammer_100",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 90
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 100
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -24.35,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_100/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_100/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_100/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.01,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_100/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_100/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_100/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 22.44,
+                "desired_distortion_db": -0.04,
+                "output_snr_db": -13.75,
+                "stoi": 0.784
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_100/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_100/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_100/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 14.82,
+                "desired_distortion_db": -2.25,
+                "output_snr_db": -2.84,
+                "stoi": 0.932
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_100/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_100/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_100/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 19.43,
+                "desired_distortion_db": -0.56,
+                "output_snr_db": -12.64,
+                "stoi": 0.959
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_90__jackhammer_105",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 90
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 105
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -23.41,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_105/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_105/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_105/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.02,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_105/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_105/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_105/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 25.16,
+                "desired_distortion_db": -0.09,
+                "output_snr_db": -9.16,
+                "stoi": 0.811
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_105/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_105/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_105/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 15.58,
+                "desired_distortion_db": -2.41,
+                "output_snr_db": -1.46,
+                "stoi": 0.935
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_105/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_105/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_105/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 23.56,
+                "desired_distortion_db": -1.04,
+                "output_snr_db": -4.02,
+                "stoi": 0.969
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_90__jackhammer_112p5",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 90
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 112.5
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -24.51,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_112p5/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_112p5/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_112p5/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -9.97,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_112p5/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_112p5/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_112p5/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 27.07,
+                "desired_distortion_db": -0.12,
+                "output_snr_db": -2.92,
+                "stoi": 0.812
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_112p5/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_112p5/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_112p5/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 21.06,
+                "desired_distortion_db": -2.48,
+                "output_snr_db": 4.71,
+                "stoi": 0.934
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_112p5/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_112p5/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_112p5/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 24.81,
+                "desired_distortion_db": -3.0,
+                "output_snr_db": 4.48,
+                "stoi": 0.981
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_90__jackhammer_120",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 90
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 120
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -23.38,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_120/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_120/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_120/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.01,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_120/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_120/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_120/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 27.33,
+                "desired_distortion_db": -0.11,
+                "output_snr_db": -1.55,
+                "stoi": 0.75
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_120/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_120/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_120/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 24.62,
+                "desired_distortion_db": -2.53,
+                "output_snr_db": 8.63,
+                "stoi": 0.933
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_120/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_120/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_120/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 23.4,
+                "desired_distortion_db": -4.95,
+                "output_snr_db": 6.76,
+                "stoi": 0.992
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_90__jackhammer_150",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 90
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 150
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -28.82,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_150/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_150/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_150/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.01,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_150/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_150/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_150/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 24.66,
+                "desired_distortion_db": -0.21,
+                "output_snr_db": -3.12,
+                "stoi": 0.797
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_150/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_150/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_150/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 15.95,
+                "desired_distortion_db": -2.78,
+                "output_snr_db": 0.6,
+                "stoi": 0.943
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_150/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_150/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_150/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 21.16,
+                "desired_distortion_db": -13.63,
+                "output_snr_db": 12.45,
+                "stoi": 0.989
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_90__jackhammer_180",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 90
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 180
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -25.19,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_180/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_180/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_180/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -9.96,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_180/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_180/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_180/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 26.76,
+                "desired_distortion_db": -0.11,
+                "output_snr_db": 2.03,
+                "stoi": 0.772
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_180/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_180/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_180/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 25.0,
+                "desired_distortion_db": -2.51,
+                "output_snr_db": 9.56,
+                "stoi": 0.933
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_180/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_180/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_180/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 20.9,
+                "desired_distortion_db": -16.96,
+                "output_snr_db": 11.98,
+                "stoi": 0.998
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_90__jackhammer_210",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 90
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 210
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -23.54,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_210/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_210/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_210/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.01,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_210/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_210/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_210/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 26.15,
+                "desired_distortion_db": -0.25,
+                "output_snr_db": 1.62,
+                "stoi": 0.789
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_210/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_210/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_210/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 23.78,
+                "desired_distortion_db": -2.6,
+                "output_snr_db": 8.39,
+                "stoi": 0.935
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_210/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_210/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_210/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 23.97,
+                "desired_distortion_db": -10.8,
+                "output_snr_db": 16.02,
+                "stoi": 0.994
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_90__jackhammer_240",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 90
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 240
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -28.47,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_240/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_240/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_240/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.0,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_240/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_240/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_240/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 18.42,
+                "desired_distortion_db": -0.21,
+                "output_snr_db": -6.43,
+                "stoi": 0.767
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_240/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_240/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_240/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 18.34,
+                "desired_distortion_db": -2.55,
+                "output_snr_db": 3.07,
+                "stoi": 0.932
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_240/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_240/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_240/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 15.47,
+                "desired_distortion_db": -13.71,
+                "output_snr_db": 6.99,
+                "stoi": 0.995
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_90__jackhammer_270",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 90
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 270
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -23.17,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_270/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_270/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_270/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.01,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_270/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_270/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_270/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 25.58,
+                "desired_distortion_db": -0.24,
+                "output_snr_db": 2.05,
+                "stoi": 0.77
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_270/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_270/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_270/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 20.77,
+                "desired_distortion_db": -2.5,
+                "output_snr_db": 5.21,
+                "stoi": 0.933
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_270/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_270/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_270/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 22.03,
+                "desired_distortion_db": -11.78,
+                "output_snr_db": 13.85,
+                "stoi": 0.991
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_90__jackhammer_300",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 90
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 300
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -24.61,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_300/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_300/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_300/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.01,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_300/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_300/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_300/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 27.17,
+                "desired_distortion_db": -0.24,
+                "output_snr_db": 2.69,
+                "stoi": 0.768
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_300/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_300/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_300/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 25.02,
+                "desired_distortion_db": -2.51,
+                "output_snr_db": 9.56,
+                "stoi": 0.934
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_300/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_300/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_300/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 25.27,
+                "desired_distortion_db": -15.48,
+                "output_snr_db": 16.4,
+                "stoi": 0.994
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_90__jackhammer_330",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 90
+          },
+          "noise": {
+            "content_id": "jackhammer",
+            "label": "Jackhammer",
+            "direction_deg": 330
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -24.1,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_330/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_330/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_330/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.01,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_330/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_330/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_330/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 26.15,
+                "desired_distortion_db": -0.13,
+                "output_snr_db": 2.37,
+                "stoi": 0.773
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_330/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_330/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_330/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 21.13,
+                "desired_distortion_db": -2.57,
+                "output_snr_db": 5.74,
+                "stoi": 0.934
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_90__jackhammer_330/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_90__jackhammer_330/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_90__jackhammer_330/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 24.89,
+                "desired_distortion_db": -10.19,
+                "output_snr_db": 17.07,
+                "stoi": 0.991
+              }
+            }
+          }
+        },
+        {
           "id": "sim__siren_0__engine_idling_90",
           "desired": {
             "content_id": "siren",
@@ -9474,6 +12520,86 @@
                 "desired_distortion_db": -10.18,
                 "output_snr_db": 14.39,
                 "stoi": null
+              }
+            }
+          }
+        },
+        {
+          "id": "sim__speech_0__street_music_90",
+          "desired": {
+            "content_id": "speech",
+            "label": "Speech",
+            "direction_deg": 0
+          },
+          "noise": {
+            "content_id": "street_music",
+            "label": "Street noise",
+            "direction_deg": 90
+          },
+          "input_snr_db": -10.0,
+          "lambda": 0.1,
+          "duration_s": 4.0,
+          "shared_gain_db": -24.8,
+          "observation_window_s": 0.5,
+          "methods": {
+            "mixture": {
+              "label": "ANC off",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__street_music_90/mixture_output.wav",
+                "desired": "audio/sim/sim__speech_0__street_music_90/mixture_desired.wav",
+                "noise": "audio/sim/sim__speech_0__street_music_90/mixture_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 0.0,
+                "desired_distortion_db": null,
+                "output_snr_db": -10.01,
+                "stoi": 1.0
+              }
+            },
+            "conventional_anc": {
+              "label": "Conventional ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__street_music_90/conventional_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__street_music_90/conventional_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__street_music_90/conventional_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 24.01,
+                "desired_distortion_db": -0.21,
+                "output_snr_db": -1.79,
+                "stoi": 0.785
+              }
+            },
+            "analytical_ssanc": {
+              "label": "Analytical SSANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__street_music_90/analytical_ssanc_output.wav",
+                "desired": "audio/sim/sim__speech_0__street_music_90/analytical_ssanc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__street_music_90/analytical_ssanc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 20.23,
+                "desired_distortion_db": -2.49,
+                "output_snr_db": 4.54,
+                "stoi": 0.932
+              }
+            },
+            "dp_anc": {
+              "label": "DP-ANC",
+              "available": true,
+              "audio": {
+                "output": "audio/sim/sim__speech_0__street_music_90/dp_anc_output.wav",
+                "desired": "audio/sim/sim__speech_0__street_music_90/dp_anc_desired.wav",
+                "noise": "audio/sim/sim__speech_0__street_music_90/dp_anc_noise.wav"
+              },
+              "metrics": {
+                "nr_db": 21.11,
+                "desired_distortion_db": -8.08,
+                "output_snr_db": 13.82,
+                "stoi": 0.996
               }
             }
           }

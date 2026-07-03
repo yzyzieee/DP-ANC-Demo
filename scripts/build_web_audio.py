@@ -104,7 +104,9 @@ DATA_OUT = DEMO_ROOT / "public" / "data"
 # Desired sources are CLEAN synthetic alarms (no background hiss) — they are still tonal/
 # harmonic, i.e. out-of-distribution vs the band-limited-Gaussian training desired, so they
 # still demonstrate content generalization while giving a clean A/B comparison.
+SPEECH_DIR = SCRIPT_DIR / "assets" / "speech"
 CONTENTS = {
+    "speech": ("Speech", "speech_file", "osr_0010_8k.wav"),
     "siren": ("Two-tone siren", "synth", "siren"),
     "beep_alarm": ("Beeping alarm", "synth", "beep"),
     "warble": ("Warble alarm", "synth", "warble"),
@@ -115,12 +117,14 @@ CONTENTS = {
     "drilling": ("Machinery", "urbansound", "drilling"),
 }
 CONTENT_ROLE = {  # for the manifest menu
+    "speech": "desired",
     "siren": "desired", "beep_alarm": "desired", "warble": "desired",
     "bandlimited_gaussian": "desired",
     "jackhammer": "both", "engine_idling": "noise",
     "street_music": "noise", "drilling": "both",
 }
 CONTENT_SOURCE = {
+    "speech": "Open Speech Repository (Harvard sentences, free for testing)",
     "siren": "Synthetic clean alarm",
     "beep_alarm": "Synthetic clean alarm",
     "warble": "Synthetic clean alarm",
@@ -130,6 +134,7 @@ CONTENT_SOURCE = {
     "street_music": "UrbanSound8K (CC-BY-NC)",
     "drilling": "UrbanSound8K (CC-BY-NC)",
 }
+SPEECH_CONTENTS = {"speech"}   # scenes with these desired contents get STOI computed
 
 # ---- simulated-array scenes ----
 # Desired is anchored at a few directions; the non-desired source is swept DENSELY
@@ -170,13 +175,27 @@ NOISE_GRID = sorted({n for a in DESIRED_ANCHORS for n in _noise_dirs_for(a)})
 ANGLE_GRID = sorted(set(DESIRED_ANCHORS) | set(NOISE_GRID))
 
 
+# Clean speech desired at two anchors, non-desired jackhammer swept (for the directivity
+# curve + STOI); demonstrates preservation on speech, not just alarms.
+SPEECH_ANCHORS = [0, 90]
+
+
+def _speech_scenes():
+    out = []
+    for dd in SPEECH_ANCHORS:
+        for nd in _noise_dirs_for(dd):
+            out.append(("speech", dd, "jackhammer", nd, None))
+    return out
+
+
 # A few accent scenes so other contents are still selectable (sparse, at anchor dirs).
 SIM_ACCENTS = [
     ("siren", 0, "engine_idling", 90, None),
     ("beep_alarm", 0, "street_music", 90, None),
     ("bandlimited_gaussian", 0, "drilling", 90, None),
+    ("speech", 0, "street_music", 90, None),
 ]
-SIM_SCENES = _sim_scenes() + SIM_ACCENTS
+SIM_SCENES = _sim_scenes() + _speech_scenes() + SIM_ACCENTS
 
 METHODS = ["mixture", "conventional_anc", "analytical_ssanc", "dp_anc"]
 METHOD_LABELS = {
@@ -240,6 +259,19 @@ def load_content(content_id, N, bp, dev, gen):
         x = torch.randn(N, device=dev, generator=gen)
     elif kind == "synth":
         x = _synth_alarm(spec, N, dev)
+    elif kind == "speech_file":
+        wav, sr = sf.read(str(SPEECH_DIR / spec))
+        if wav.ndim > 1:
+            wav = wav.mean(axis=1)
+        if sr != FS:
+            from scipy.signal import resample_poly
+            from math import gcd
+            gg = gcd(int(sr), FS)
+            wav = resample_poly(wav, FS // gg, int(sr) // gg)
+        xs = torch.tensor(wav, dtype=torch.float32, device=dev)
+        if xs.shape[0] < N:
+            xs = xs.repeat(int(math.ceil(N / xs.shape[0])))
+        x = _pick_loudest_window(xs, N).clone()
     elif kind == "urbansound":
         x = _load_urbansound_class(spec, N, dev, gen)
     else:
@@ -291,6 +323,21 @@ def build_ir(sim, theta_deg, dev):
 def energy_db(num, den):
     num = float((num ** 2).sum()); den = float((den ** 2).sum()) + 1e-12
     return 10.0 * math.log10(max(num / den, 1e-12))
+
+
+_AM = None
+
+
+def _stoi(ref, est):
+    """STOI(clean desired, preserved desired) via the research repo's audio_metrics; None on failure."""
+    global _AM
+    try:
+        if _AM is None:
+            import audio_metrics as AM
+            _AM = AM
+        return round(float(_AM.stoi(ref, est, FS)), 3)
+    except Exception:
+        return None
 
 
 def _sim_fields(sim, bp, dev, desired, dd, noise, nd, length, gen):
@@ -350,11 +397,12 @@ def generate_scene(sim, cfg, bp, dev, exp, desired, dd, noise, nd, swap_of):
         return _batched_g_conv(_batched_W_conv(W, ref, N), sim.g, N)[0]
 
     return _finalize(exp, desired, dd, noise, nd, swap_of, W_by_method,
-                     s_full, v_full, apply_W, bp, K, LAMBDA, INPUT_SNR_DB, OBS_S)
+                     s_full, v_full, apply_W, bp, K, LAMBDA, INPUT_SNR_DB, OBS_S,
+                     compute_stoi=desired in SPEECH_CONTENTS)
 
 
 def _finalize(exp, desired, dd, noise, nd, swap_of, W_by_method,
-              s_full, v_full, apply_W, bp, K, lam, snr_db, obs_s):
+              s_full, v_full, apply_W, bp, K, lam, snr_db, obs_s, compute_stoi=False):
     """Shared: apply each W over the full clip, build the 3 stems + metrics, apply ONE
     shared per-scene gain, write WAVs, and return the manifest scene dict. Used by both
     the simulated array and the hearpiece generators."""
@@ -377,9 +425,11 @@ def _finalize(exp, desired, dd, noise, nd, swap_of, W_by_method,
         nr = energy_db(v_err_bp, noise_out)
         dist = None if m == "mixture" else energy_db(anti_s_bp, s_err_bp)
         osnr = energy_db(desired_out, noise_out)
+        # STOI on the preserved desired vs the clean desired (speech scenes only).
+        stoi = _stoi(s_err_bp, desired_out) if compute_stoi else None
         metrics[m] = {"nr_db": round(nr, 2),
                       "desired_distortion_db": None if dist is None else round(dist, 2),
-                      "output_snr_db": round(osnr, 2), "stoi": None}
+                      "output_snr_db": round(osnr, 2), "stoi": stoi}
 
     gain = 0.95 / peak
     sid = scene_id(exp, desired, dd, noise, nd)
@@ -518,7 +568,8 @@ def generate_hp_scene(sim, model, norm, info, bp, dev, desired, dd, noise, nd, s
         return sim._anti(W, ref)[0]
 
     return _finalize("hp", desired, dd, noise, nd, swap_of, W_by_method,
-                     s_full, v_full, apply_W, bp, K, HP_LAMBDA, HP_SNR_DB, OBS_S)
+                     s_full, v_full, apply_W, bp, K, HP_LAMBDA, HP_SNR_DB, OBS_S,
+                     compute_stoi=desired in SPEECH_CONTENTS)
 
 
 def gen_hearpiece(limit=None):
